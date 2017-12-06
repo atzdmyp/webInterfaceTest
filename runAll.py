@@ -52,14 +52,8 @@ class AllTest:
         if len(suite_module) > 0:
 
             for suite in suite_module:
-                i = 0
                 for test_name in suite:
                     test_suite.addTest(test_name)
-                    i += 1
-                name = str(test_name).split("=")[-1]
-                group = name[:-5] + ": %d" % i
-                self.cases_num.append(group)
-            print(self.cases_num)
         else:
             return None
 

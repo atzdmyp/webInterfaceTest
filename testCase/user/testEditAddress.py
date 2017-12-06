@@ -6,17 +6,18 @@ from common import common
 from common import configHttp as ConfigHttp
 from common import businessCommon
 
-addAddress_xls = common.get_xls("userCase.xlsx", "addAddress")
+editAddress_xls = common.get_xls("userCase.xlsx", "editAddress")
 localReadConfig = readConfig.ReadConfig()
 configHttp = ConfigHttp.ConfigHttp()
 
 
-@paramunittest.parametrized(*addAddress_xls)
+@paramunittest.parametrized(*editAddress_xls)
 class AddAddress(unittest.TestCase):
-    def setParameters(self, description, sex, fname, lname, father_name, english_name, tel, standby_tel, address1, address2, city, state, postcode, country_id, tax_number, company, fax, is_default, street, msg, code):
+    def setParameters(self, description, address_id, sex, fname, lname, father_name, english_name, tel, standby_tel, address1, address2, city, state, postcode, country_id, tax_number, company, fax, is_default, street, msg, code):
         """
         set params
         :param description:
+        :param address_id:
         :param sex:
         :param fname:
         :param lname:
@@ -40,6 +41,7 @@ class AddAddress(unittest.TestCase):
         :return:
         """
         self.description = str(description)
+        self.address_id = int(address_id)
         self.sex = str(sex)
         self.fname = str(fname)
         self.lname = str(lname)
@@ -84,16 +86,20 @@ class AddAddress(unittest.TestCase):
         :return:
         """
         # set url
-        self.url = common.get_url_from_xml('addAddress')
+        self.url = common.get_url_from_xml('editAddress')
         configHttp.set_url(self.url)
 
         # get token
-        self.token = "42002693993_5a2669785c0267.83174218_2a2367697a6fa222dd63927f72752c3e85060f63"
+        self.token = "74982693993_5a2748ecb1e5b2.84999263_3a8a19bf6217683ac5233f456f5311d72730ee17"
 
         # set headers
         header = {"token": str(self.token),
-                  "SiteUID": "rw"}
+                  "SiteUID": "rwm"}
         configHttp.set_headers(header)
+
+        # set params
+        params = {"address_id": self.address_id}
+        configHttp.set_params(params)
 
         # set data
         if self.country_id == 74 or self.country_id == 198:

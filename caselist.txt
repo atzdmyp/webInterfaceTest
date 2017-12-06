@@ -1,9 +1,9 @@
-user/testLogin
+#user/testLogin
 #user/testRegister
 #user/testRegisterQuick
 #user/testGenerate
 #user/testLoginFB
-user/testLogout
+#user/testLogout
 #user/testAccountSetting
 #user/testUpdatePassword
 #user/testUploadImg
@@ -11,4 +11,6 @@ user/testLogout
 #user/testGetAddress
 #product/testGetProductInfo
 #user/testAddAddress
+#user/testEditAddress
 #user/testDeleteAddress
+orders/testEditOrderAddress
