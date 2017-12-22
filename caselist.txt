@@ -10,7 +10,7 @@
 #user/testGetAddressList
 #user/testGetAddress
 #product/testGetProductInfo
-#user/testAddAddress
-#user/testEditAddress
 #user/testDeleteAddress
+user/testAddAddress
+user/testEditAddress
 orders/testEditOrderAddress

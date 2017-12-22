@@ -88,11 +88,11 @@ class AddAddress(unittest.TestCase):
         configHttp.set_url(self.url)
 
         # get token
-        self.token = "42002693993_5a2669785c0267.83174218_2a2367697a6fa222dd63927f72752c3e85060f63"
+        self.token = "20253215139_5a2a0b68326238.31546893_653b9e2a804dd003fba87c7316a15019150d19df"
 
         # set headers
         header = {"token": str(self.token),
-                  "SiteUID": "rw"}
+                  "SiteUID": "rwm"}
         configHttp.set_headers(header)
 
         # set data
@@ -159,7 +159,9 @@ class AddAddress(unittest.TestCase):
                 self.assertEqual(str(self.postcode), common.get_value_from_return_json(self.info, 'address', 'postcode'))
             else:
                 self.assertEqual(self.postcode, common.get_value_from_return_json(self.info, 'address', 'postcode'))
-            self.assertEqual(self.tel, common.get_value_from_return_json(self.info, 'address', 'tel'))
+            if self.country_id == 30:
+                self.assertEqual(self.tax_number, common.get_value_from_return_json(self.info, 'address', 'taxNumber'))
+            self.assertEqual(str(self.tel), common.get_value_from_return_json(self.info, 'address', 'tel'))
             self.assertEqual(self.address1, common.get_value_from_return_json(self.info, 'address', 'address1'))
             self.assertEqual(self.city, common.get_value_from_return_json(self.info, 'address', 'city'))
             self.assertEqual(self.state, common.get_value_from_return_json(self.info, 'address', 'state'))

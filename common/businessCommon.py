@@ -15,22 +15,25 @@ def login():
     :return: token
     """
     # set url
-    url = common.get_url_from_xml('login')
-    localConfigHttp.set_url(url)
+    localConfigHttp.set_url()
 
     # set header
     token = localReadConfig.get_headers("token_v")
-    header = {"token": token}
+    header = {"token": token,
+              "SiteUID": "rw",
+              "appclientip": "192.168.20.86"}
     localConfigHttp.set_headers(header)
 
     # set param
-    data = {"email": localLogin_xls[0][3],
-            "password": localLogin_xls[0][4]}
+    data = {"email": "wangke@dotfashion.cn",
+            "password": "123456"}
     localConfigHttp.set_data(data)
 
     # login
     response = localConfigHttp.post().json()
+    print("response"+str(response))
     token = common.get_value_from_return_json(response, "member", "token")
+    print("login_token" + token)
     return token
 
 

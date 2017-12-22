@@ -6,13 +6,13 @@ from common import common
 from common import configHttp as ConfigHttp
 from common import businessCommon
 
-editOrderAddress_xls = common.get_xls("orderCase.xlsx", "editOrderAddress")
+editOrderAddress_xls = common.get_xls("ordersCase.xlsx", "editOrderAddress")
 localReadConfig = readConfig.ReadConfig()
 configHttp = ConfigHttp.ConfigHttp()
 
 
 @paramunittest.parametrized(*editOrderAddress_xls)
-class AddAddress(unittest.TestCase):
+class EditOrderAddress(unittest.TestCase):
     def setParameters(self, description, billno, sex, fname, lname, father_name, english_name, tel, standby_tel, address1, address2, city, state, postcode, country_id, tax_number, company, fax, is_default, street, msg, code):
         """
         set params
@@ -90,7 +90,7 @@ class AddAddress(unittest.TestCase):
         configHttp.set_url(self.url)
 
         # get token
-        self.token = "74982693993_5a2748ecb1e5b2.84999263_3a8a19bf6217683ac5233f456f5311d72730ee17"
+        self.token = "20253215139_5a2a0b68326238.31546893_653b9e2a804dd003fba87c7316a15019150d19df"
 
         # set headers
         header = {"token": str(self.token),
@@ -146,29 +146,5 @@ class AddAddress(unittest.TestCase):
         self.info = self.return_json.json()
         common.show_return_msg(self.return_json)
 
-        if self.code == '0':
-            self.assertEqual(self.info['code'], self.code)
-            self.assertEqual(self.info['msg'], self.msg)
-            self.assertEqual(self.sex, common.get_value_from_return_json(self.info, 'address', 'sex'))
-            self.assertEqual(self.fname, common.get_value_from_return_json(self.info, 'address', 'fname'))
-            if self.country_id == 38 or self.country_id == 137:
-                self.assertEqual("", common.get_value_from_return_json(self.info, 'address', 'lname'))
-            else:
-                self.assertEqual(self.lname, common.get_value_from_return_json(self.info, 'address', 'lname'))
-            if self.country_id == 178:
-                self.assertEqual(self.father_name, common.get_value_from_return_json(self.info, 'address', 'fatherName'))
-            else:
-                self.assertEqual("", common.get_value_from_return_json(self.info, 'address', 'fatherName'))
-            if self.country_id == 74 or self.country_id == 198:
-                self.assertEqual(str(self.postcode), common.get_value_from_return_json(self.info, 'address', 'postcode'))
-            else:
-                self.assertEqual(self.postcode, common.get_value_from_return_json(self.info, 'address', 'postcode'))
-            self.assertEqual(self.tel, common.get_value_from_return_json(self.info, 'address', 'tel'))
-            self.assertEqual(self.address1, common.get_value_from_return_json(self.info, 'address', 'address1'))
-            self.assertEqual(self.city, common.get_value_from_return_json(self.info, 'address', 'city'))
-            self.assertEqual(self.state, common.get_value_from_return_json(self.info, 'address', 'state'))
-            self.assertEqual(str(self.country_id), common.get_value_from_return_json(self.info, 'address', 'countryId'))
-
-        else:
-            self.assertEqual(self.info['code'], self.code)
-            self.assertEqual(self.info['msg'], self.msg)
+        self.assertEqual(self.info['code'], self.code)
+        self.assertEqual(self.info['msg'], self.msg)

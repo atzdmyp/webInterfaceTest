@@ -47,8 +47,11 @@ def get_value_from_return_json(json, name1, name2):
     :return:
     """
     info = json['info']
-    group = info[name1]
-    value = group[name2]
+    if info:
+        group = info[name1]
+        value = group[name2]
+    else:
+        logger.info("Login Error!")
     return value
 
 
@@ -81,9 +84,16 @@ def get_xls(xls_name, sheet_name):
     # get one sheet's rows
     nrows = sheet.nrows
     for i in range(nrows):
-        if sheet.row_values(i)[0] != u'case_name':
+        if sheet.row_values(i)[0] != u'description':
             cls.append(sheet.row_values(i))
     return cls
+
+
+def set_xls():
+    """
+    set msg into xls file
+    :return:
+    """
 
 # ****************************** read SQL xml ********************************
 database = {}

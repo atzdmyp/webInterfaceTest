@@ -78,9 +78,21 @@
         <action>delete</action>
     </url>
 
+    <url name="editAddress">
+        <group>User</group>
+        <module>Address</module>
+        <action>edit</action>
+    </url>
+
     <url name="productInfo">
         <group>product</group>
         <module>product</module>
         <action>info</action>
+    </url>
+
+    <url name="editOrderAddress">
+        <group>order</group>
+        <module>order</module>
+        <action>editOrderAddress</action>
     </url>
 </interface>

@@ -20,18 +20,22 @@ class AllTest:
         # self.caseFile = None
         self.caseList = []
         self.email = MyEmail.get_email()
-        self.cases_num = []
+
+        # 2016case
+        self.caseListFile2016 = os.path.join(readConfig.proDir, "caselist2016.txt")
+        self.caseFile2016 = os.path.join(readConfig.proDir, "testCase2016")
+        self.caseList2016 = []
 
     def set_case_list(self):
         """
         set case list
         :return:
         """
-        fb = open(self.caseListFile)
+        fb = open(self.caseListFile2016)
         for value in fb.readlines():
             data = str(value)
             if data != '' and not data.startswith("#"):
-                self.caseList.append(data.replace("\n", ""))
+                self.caseList2016.append(data.replace("\n", ""))
         fb.close()
 
     def set_case_suite(self):
@@ -43,10 +47,10 @@ class AllTest:
         test_suite = unittest.TestSuite()
         suite_module = []
 
-        for case in self.caseList:
+        for case in self.caseList2016:
             case_name = case.split("/")[-1]
             print(case_name+".py")
-            discover = unittest.defaultTestLoader.discover(self.caseFile, pattern=case_name + '.py', top_level_dir=None)
+            discover = unittest.defaultTestLoader.discover(self.caseFile2016, pattern=case_name + '.py', top_level_dir=None)
             suite_module.append(discover)
 
         if len(suite_module) > 0:
@@ -67,7 +71,7 @@ class AllTest:
         try:
             suit = self.set_case_suite()
             if suit is not None:
-                logger.info("********TEST START********")
+                logger.info("********TEST START 2016********")
                 fp = open(resultPath, 'wb')
                 runner = HTMLTestRunner.HTMLTestRunner(stream=fp, title='接口测试报告', description='Test Description')
                 runner.run(suit)

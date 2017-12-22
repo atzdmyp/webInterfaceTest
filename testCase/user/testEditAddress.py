@@ -12,7 +12,7 @@ configHttp = ConfigHttp.ConfigHttp()
 
 
 @paramunittest.parametrized(*editAddress_xls)
-class AddAddress(unittest.TestCase):
+class EditAddress(unittest.TestCase):
     def setParameters(self, description, address_id, sex, fname, lname, father_name, english_name, tel, standby_tel, address1, address2, city, state, postcode, country_id, tax_number, company, fax, is_default, street, msg, code):
         """
         set params
@@ -90,7 +90,7 @@ class AddAddress(unittest.TestCase):
         configHttp.set_url(self.url)
 
         # get token
-        self.token = "74982693993_5a2748ecb1e5b2.84999263_3a8a19bf6217683ac5233f456f5311d72730ee17"
+        self.token = "20253215139_5a2a0b68326238.31546893_653b9e2a804dd003fba87c7316a15019150d19df"
 
         # set headers
         header = {"token": str(self.token),
@@ -165,7 +165,9 @@ class AddAddress(unittest.TestCase):
                 self.assertEqual(str(self.postcode), common.get_value_from_return_json(self.info, 'address', 'postcode'))
             else:
                 self.assertEqual(self.postcode, common.get_value_from_return_json(self.info, 'address', 'postcode'))
-            self.assertEqual(self.tel, common.get_value_from_return_json(self.info, 'address', 'tel'))
+            if self.country_id == 30:
+                self.assertEqual(self.tax_number, common.get_value_from_return_json(self.info, 'address', 'taxNumber'))
+            self.assertEqual(str(self.tel), common.get_value_from_return_json(self.info, 'address', 'tel'))
             self.assertEqual(self.address1, common.get_value_from_return_json(self.info, 'address', 'address1'))
             self.assertEqual(self.city, common.get_value_from_return_json(self.info, 'address', 'city'))
             self.assertEqual(self.state, common.get_value_from_return_json(self.info, 'address', 'state'))
