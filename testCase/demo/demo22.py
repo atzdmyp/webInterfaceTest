@@ -11,7 +11,7 @@ def callback():
     global path
     path.set(askdirectory())
 
-root = Tk(className="生成二维码")
+root = Tk(className=" ")
 path = StringVar()
 
 Label(root, text="URL:").grid(row=0)

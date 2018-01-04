@@ -1,0 +1,342 @@
+2017-12-06 13:04:20,818 - root - INFO - ********TEST START********
+2017-12-06 13:04:21,226 - root - INFO - 法国fname小于2字符 - Code:400305 - msg:fname not less than 2.
+2017-12-06 13:04:21,614 - root - INFO - 法国fname大于40字符 - Code:400340 - msg:Fname over 40
+2017-12-06 13:04:22,014 - root - INFO - 法国地址1为纯数字 - Code:400343 - msg:Address1 is numeric
+2017-12-06 13:04:22,416 - root - INFO - 墨西哥地址1为纯数字 - Code:400343 - msg:Address1 is numeric
+2017-12-06 13:04:22,829 - root - INFO - 墨西哥地址2为纯数字 - Code:400347 - msg:Address2 is numeric
+2017-12-06 13:04:23,237 - root - INFO - 墨西哥地址2大于35字符 - Code:400354 - msg:Address2 over 35
+2017-12-06 13:04:23,656 - root - INFO - 墨西哥tel小于5位数字 - Code:400311 - msg:tel number error.
+2017-12-06 13:04:24,055 - root - INFO - 墨西哥tel为非数字字符 - Code:400311 - msg:tel number error.
+2017-12-06 13:04:24,427 - root - INFO - 墨西哥tel大于25位数字 - Code:400311 - msg:tel number error.
+2017-12-06 13:04:24,805 - root - INFO - 墨西哥postcode小于4位字符 - Code:400308 - msg:postcode not less than 4.
+2017-12-06 13:04:25,202 - root - INFO - 墨西哥postcode大于12位字符 - Code:400323 - msg:Postcode is invalid
+2017-12-06 13:04:25,573 - root - INFO - 墨西哥state为空 - Code:400317 - msg:state can't be empty.
+2017-12-06 13:04:25,950 - root - INFO - 墨西哥正常添加地址 - Code:0 - msg:ok
+2017-12-06 13:04:26,346 - root - INFO - 法国地址2含有@符号 - Code:400348 - msg:Address2 contain @
+2017-12-06 13:04:26,730 - root - INFO - 巴西税号低于11字符 - Code:400362 - msg:BZ tax number is invalid
+2017-12-06 13:04:27,098 - root - INFO - 巴西税号大于18字符 - Code:400362 - msg:BZ tax number is invalid
+2017-12-06 13:04:27,468 - root - INFO - 巴西税号正常编辑 - Code:0 - msg:ok
+2017-12-06 13:04:27,833 - root - INFO - 法国地址2为纯数字 - Code:400347 - msg:Address2 is numeric
+2017-12-06 13:04:28,207 - root - INFO - 法国地址1和地址2大于90字符 - Code:400345 - msg:Address1 and address2 total over 90
+2017-12-06 13:04:28,581 - root - INFO - 法国tel小于5位数字 - Code:400311 - msg:tel number error.
+2017-12-06 13:04:28,969 - root - INFO - 法国tel为非数字字符 - Code:400311 - msg:tel number error.
+2017-12-06 13:04:29,410 - root - INFO - 法国state为空 - Code:400317 - msg:state can't be empty.
+2017-12-06 13:04:29,856 - root - INFO - 法国postcode非5位纯数字 - Code:400323 - msg:Postcode is invalid
+2017-12-06 13:04:30,234 - root - INFO - 法国正常添加地址 - Code:0 - msg:ok
+2017-12-06 13:04:30,613 - root - INFO - 西班牙fname小于2字符 - Code:400305 - msg:fname not less than 2.
+2017-12-06 13:04:30,986 - root - INFO - 法国lname小于2字符 - Code:400306 - msg:lname not less than 2.
+2017-12-06 13:04:31,373 - root - INFO - 西班牙fname大于40字符 - Code:400340 - msg:Fname over 40
+2017-12-06 13:04:31,740 - root - INFO - 西班牙lname小于2字符 - Code:400306 - msg:lname not less than 2.
+2017-12-06 13:04:32,122 - root - INFO - 西班牙lname大于40字符 - Code:400341 - msg:Lname over 40
+2017-12-06 13:04:32,489 - root - INFO - 西班牙city小于2字符 - Code:400309 - msg:city not less than 2.
+2017-12-06 13:04:32,877 - root - INFO - 西班牙city大于40字符 - Code:400349 - msg:City over 40
+2017-12-06 13:04:33,267 - root - INFO - 西班牙city为纯数字 - Code:400350 - msg:City is numeric
+2017-12-06 13:04:33,645 - root - INFO - 西班牙地址1小于5字符 - Code:400307 - msg:address error.
+2017-12-06 13:04:34,014 - root - INFO - 西班牙地址1大于40字符 - Code:400351 - msg:Address1 over 40
+2017-12-06 13:04:34,380 - root - INFO - 西班牙地址1含有@符号 - Code:400344 - msg:Address1 contain @
+2017-12-06 13:04:34,747 - root - INFO - 西班牙地址1为纯数字 - Code:400343 - msg:Address1 is numeric
+2017-12-06 13:04:35,111 - root - INFO - 法国lname大于40字符 - Code:400341 - msg:Lname over 40
+2017-12-06 13:04:35,476 - root - INFO - 西班牙地址2含有@符号 - Code:400348 - msg:Address2 contain @
+2017-12-06 13:04:35,873 - root - INFO - 西班牙地址2为纯数字 - Code:400347 - msg:Address2 is numeric
+2017-12-06 13:04:36,233 - root - INFO - 西班牙地址2大于40字符 - Code:400352 - msg:Address2 over 40
+2017-12-06 13:04:36,598 - root - INFO - 西班牙tel小于5位数字 - Code:400311 - msg:tel number error.
+2017-12-06 13:04:36,971 - root - INFO - 西班牙tel为非数字字符 - Code:400311 - msg:tel number error.
+2017-12-06 13:04:37,348 - root - INFO - 西班牙tel大于13位数字 - Code:400311 - msg:tel number error.
+2017-12-06 13:04:37,717 - root - INFO - 西班牙postcode非5位纯数字 - Code:400323 - msg:Postcode is invalid
+2017-12-06 13:04:38,086 - root - INFO - 西班牙正常添加地址 - Code:0 - msg:ok
+2017-12-06 13:04:38,492 - root - INFO - 英国fname小于2字符 - Code:400305 - msg:fname not less than 2.
+2017-12-06 13:04:38,868 - root - INFO - 英国fname大于40字符 - Code:400340 - msg:Fname over 40
+2017-12-06 13:04:39,258 - root - INFO - 法国city小于2字符 - Code:400309 - msg:city not less than 2.
+2017-12-06 13:04:39,636 - root - INFO - 英国fname含非法字符 - Code:400358 - msg:Fname contain unlegal character
+2017-12-06 13:04:40,017 - root - INFO - 英国lname小于2字符 - Code:400306 - msg:lname not less than 2.
+2017-12-06 13:04:40,400 - root - INFO - 英国lname大于40字符 - Code:400341 - msg:Lname over 40
+2017-12-06 13:04:40,788 - root - INFO - 英国lname含非法字符 - Code:400359 - msg:Lname contain unlegal character
+2017-12-06 13:04:41,161 - root - INFO - 英国city小于2字符 - Code:400309 - msg:city not less than 2.
+2017-12-06 13:04:41,518 - root - INFO - 英国city大于40字符 - Code:400349 - msg:City over 40
+2017-12-06 13:04:41,881 - root - INFO - 英国city为纯数字 - Code:400350 - msg:City is numeric
+2017-12-06 13:04:42,256 - root - INFO - 英国地址1小于5字符 - Code:400307 - msg:address error.
+2017-12-06 13:04:42,660 - root - INFO - 英国地址1大于35字符 - Code:400353 - msg:Address1 over 35
+2017-12-06 13:04:43,033 - root - INFO - 英国地址1含非法字符 - Code:400360 - msg:Address1 contain unlegal character
+2017-12-06 13:04:43,403 - root - INFO - 法国city大于40字符 - Code:400349 - msg:City over 40
+2017-12-06 13:04:43,817 - root - INFO - 英国地址1为纯数字 - Code:400343 - msg:Address1 is numeric
+2017-12-06 13:04:44,186 - root - INFO - 英国地址2含非法字符 - Code:400361 - msg:Address2 contain unlegal character
+2017-12-06 13:04:44,586 - root - INFO - 英国地址2为纯数字 - Code:400347 - msg:Address2 is numeric
+2017-12-06 13:04:44,949 - root - INFO - 英国地址2大于35字符 - Code:400354 - msg:Address2 over 35
+2017-12-06 13:04:45,310 - root - INFO - 英国tel小于5位数字 - Code:400311 - msg:tel number error.
+2017-12-06 13:04:45,690 - root - INFO - 英国tel为非数字字符 - Code:400311 - msg:tel number error.
+2017-12-06 13:04:46,070 - root - INFO - 英国tel大于16位数字 - Code:400311 - msg:tel number error.
+2017-12-06 13:04:46,448 - root - INFO - 英国postcode非正确格式 - Code:400323 - msg:Postcode is invalid
+2017-12-06 13:04:46,873 - root - INFO - 英国正常添加地址 - Code:0 - msg:ok
+2017-12-06 13:04:47,241 - root - INFO - 意大利fname小于2字符 - Code:400305 - msg:fname not less than 2.
+2017-12-06 13:04:47,619 - root - INFO - 法国city为纯数字 - Code:400350 - msg:City is numeric
+2017-12-06 13:04:47,990 - root - INFO - 意大利fname大于40字符 - Code:400340 - msg:Fname over 40
+2017-12-06 13:04:48,350 - root - INFO - 意大利lname小于2字符 - Code:400306 - msg:lname not less than 2.
+2017-12-06 13:04:48,761 - root - INFO - 意大利lname大于40字符 - Code:400341 - msg:Lname over 40
+2017-12-06 13:04:49,123 - root - INFO - 意大利city小于2字符 - Code:400309 - msg:city not less than 2.
+2017-12-06 13:04:49,549 - root - INFO - 意大利city大于40字符 - Code:400349 - msg:City over 40
+2017-12-06 13:04:49,936 - root - INFO - 意大利city为纯数字 - Code:400350 - msg:City is numeric
+2017-12-06 13:04:50,303 - root - INFO - 意大利地址1小于5字符 - Code:400307 - msg:address error.
+2017-12-06 13:04:50,693 - root - INFO - 意大利地址1大于40字符 - Code:400351 - msg:Address1 over 40
+2017-12-06 13:04:51,072 - root - INFO - 意大利地址1含有@符号 - Code:400344 - msg:Address1 contain @
+2017-12-06 13:04:51,435 - root - INFO - 意大利地址1为纯数字 - Code:400343 - msg:Address1 is numeric
+2017-12-06 13:04:51,867 - root - INFO - 法国地址1小于5字符 - Code:400307 - msg:address error.
+2017-12-06 13:04:52,226 - root - INFO - 意大利地址2含有@符号 - Code:400348 - msg:Address2 contain @
+2017-12-06 13:04:52,585 - root - INFO - 意大利地址2为纯数字 - Code:400347 - msg:Address2 is numeric
+2017-12-06 13:04:52,953 - root - INFO - 意大利地址2大于40字符 - Code:400352 - msg:Address2 over 40
+2017-12-06 13:04:53,317 - root - INFO - 意大利tel小于5位数字 - Code:400311 - msg:tel number error.
+2017-12-06 13:04:53,677 - root - INFO - 意大利tel为非数字字符 - Code:400311 - msg:tel number error.
+2017-12-06 13:04:54,039 - root - INFO - 意大利postcode非正确格式 - Code:400323 - msg:Postcode is invalid
+2017-12-06 13:04:54,403 - root - INFO - 意大利state为空 - Code:400317 - msg:state can't be empty.
+2017-12-06 13:04:54,771 - root - INFO - 意大利正常添加地址 - Code:0 - msg:ok
+2017-12-06 13:04:55,146 - root - INFO - 加拿大fname小于4字符 - Code:400305 - msg:fname not less than 2.
+2017-12-06 13:04:55,521 - root - INFO - 加拿大fname大于35字符 - Code:400305 - msg:fname not less than 2.
+2017-12-06 13:04:55,893 - root - INFO - 法国地址1大于90字符 - Code:400342 - msg:Address1 over 90
+2017-12-06 13:04:56,266 - root - INFO - 加拿大city小于2字符 - Code:400309 - msg:city not less than 2.
+2017-12-06 13:04:56,639 - root - INFO - 加拿大city大于35字符 - Code:400309 - msg:city not less than 2.
+2017-12-06 13:04:57,015 - root - INFO - 加拿大city为纯数字 - Code:400350 - msg:City is numeric
+2017-12-06 13:04:57,382 - root - INFO - 加拿大地址1小于5字符 - Code:400307 - msg:address error.
+2017-12-06 13:04:57,765 - root - INFO - 加拿大地址1大于35字符 - Code:400307 - msg:address error.
+2017-12-06 13:04:58,164 - root - INFO - 加拿大地址1为纯数字 - Code:400343 - msg:Address1 is numeric
+2017-12-06 13:04:58,592 - root - INFO - 加拿大地址2为纯数字 - Code:400347 - msg:Address2 is numeric
+2017-12-06 13:04:58,959 - root - INFO - 加拿大地址2大于35字符 - Code:400354 - msg:Address2 over 35
+2017-12-06 13:04:59,355 - root - INFO - 加拿大tel小于5位数字 - Code:400311 - msg:tel number error.
+2017-12-06 13:04:59,768 - root - INFO - 加拿大tel为非数字字符 - Code:400311 - msg:tel number error.
+2017-12-06 13:05:00,174 - root - INFO - 法国地址1含有@符号 - Code:400344 - msg:Address1 contain @
+2017-12-06 13:05:00,579 - root - INFO - 加拿大tel大于25位数字 - Code:400311 - msg:tel number error.
+2017-12-06 13:05:00,996 - root - INFO - 加拿大postcode非正确格式 - Code:400323 - msg:Postcode is invalid
+2017-12-06 13:05:01,439 - root - INFO - 加拿大正常添加地址 - Code:0 - msg:ok
+2017-12-06 13:05:01,954 - root - INFO - 墨西哥fname小于4字符 - Code:400305 - msg:fname not less than 2.
+2017-12-06 13:05:02,506 - root - INFO - 墨西哥fname大于34字符 - Code:400305 - msg:fname not less than 2.
+2017-12-06 13:05:02,934 - root - INFO - 墨西哥city小于2字符 - Code:400309 - msg:city not less than 2.
+2017-12-06 13:05:03,320 - root - INFO - 墨西哥city大于35字符 - Code:400309 - msg:city not less than 2.
+2017-12-06 13:05:03,753 - root - INFO - 墨西哥city为纯数字 - Code:400350 - msg:City is numeric
+2017-12-06 13:05:04,122 - root - INFO - 墨西哥地址1小于5字符 - Code:400307 - msg:address error.
+2017-12-06 13:05:04,494 - root - INFO - 墨西哥地址1大于35字符 - Code:400307 - msg:address error.
+2017-12-06 13:05:04,864 - root - INFO - 法国fname小于2字符 - Code:400305 - msg:fname not less than 2.
+2017-12-06 13:05:05,226 - root - INFO - 法国fname大于40字符 - Code:400340 - msg:Fname over 40
+2017-12-06 13:05:05,603 - root - INFO - 法国地址1为纯数字 - Code:400343 - msg:Address1 is numeric
+2017-12-06 13:05:05,977 - root - INFO - 墨西哥地址1为纯数字 - Code:400343 - msg:Address1 is numeric
+2017-12-06 13:05:06,355 - root - INFO - 墨西哥地址2为纯数字 - Code:400347 - msg:Address2 is numeric
+2017-12-06 13:05:06,807 - root - INFO - 墨西哥地址2大于35字符 - Code:400354 - msg:Address2 over 35
+2017-12-06 13:05:07,201 - root - INFO - 墨西哥tel小于5位数字 - Code:400311 - msg:tel number error.
+2017-12-06 13:05:07,583 - root - INFO - 墨西哥tel为非数字字符 - Code:400311 - msg:tel number error.
+2017-12-06 13:05:07,978 - root - INFO - 墨西哥tel大于25位数字 - Code:400311 - msg:tel number error.
+2017-12-06 13:05:08,443 - root - INFO - 墨西哥postcode小于4位字符 - Code:400308 - msg:postcode not less than 4.
+2017-12-06 13:05:08,850 - root - INFO - 墨西哥postcode大于12位字符 - Code:400323 - msg:Postcode is invalid
+2017-12-06 13:05:09,243 - root - INFO - 墨西哥state为空 - Code:400317 - msg:state can't be empty.
+2017-12-06 13:05:09,654 - root - INFO - 墨西哥正常编辑地址 - Code:0 - msg:ok
+2017-12-06 13:05:10,062 - root - INFO - 法国地址2含有@符号 - Code:400348 - msg:Address2 contain @
+2017-12-06 13:05:10,539 - root - INFO - 巴西税号低于11字符 - Code:400362 - msg:BZ tax number is invalid
+2017-12-06 13:05:10,914 - root - INFO - 巴西税号大于18字符 - Code:400362 - msg:BZ tax number is invalid
+2017-12-06 13:05:11,315 - root - INFO - 巴西税号正常编辑 - Code:0 - msg:ok
+2017-12-06 13:05:11,712 - root - INFO - 法国地址2为纯数字 - Code:400347 - msg:Address2 is numeric
+2017-12-06 13:05:12,117 - root - INFO - 法国地址1和地址2大于90字符 - Code:400345 - msg:Address1 and address2 total over 90
+2017-12-06 13:05:12,513 - root - INFO - 法国tel小于5位数字 - Code:400311 - msg:tel number error.
+2017-12-06 13:05:12,925 - root - INFO - 法国tel为非数字字符 - Code:400311 - msg:tel number error.
+2017-12-06 13:05:13,290 - root - INFO - 法国state为空 - Code:400317 - msg:state can't be empty.
+2017-12-06 13:05:13,686 - root - INFO - 法国postcode非5位纯数字 - Code:400323 - msg:Postcode is invalid
+2017-12-06 13:05:14,110 - root - INFO - 法国正常编辑地址 - Code:0 - msg:ok
+2017-12-06 13:05:14,516 - root - INFO - 西班牙fname小于2字符 - Code:400305 - msg:fname not less than 2.
+2017-12-06 13:05:14,923 - root - INFO - 法国lname小于2字符 - Code:400306 - msg:lname not less than 2.
+2017-12-06 13:05:15,313 - root - INFO - 西班牙fname大于40字符 - Code:400340 - msg:Fname over 40
+2017-12-06 13:05:15,745 - root - INFO - 西班牙lname小于2字符 - Code:400306 - msg:lname not less than 2.
+2017-12-06 13:05:16,128 - root - INFO - 西班牙lname大于40字符 - Code:400341 - msg:Lname over 40
+2017-12-06 13:05:16,527 - root - INFO - 西班牙city小于2字符 - Code:400309 - msg:city not less than 2.
+2017-12-06 13:05:16,934 - root - INFO - 西班牙city大于40字符 - Code:400349 - msg:City over 40
+2017-12-06 13:05:17,370 - root - INFO - 西班牙city为纯数字 - Code:400350 - msg:City is numeric
+2017-12-06 13:05:17,806 - root - INFO - 西班牙地址1小于5字符 - Code:400307 - msg:address error.
+2017-12-06 13:05:18,280 - root - INFO - 西班牙地址1大于40字符 - Code:400351 - msg:Address1 over 40
+2017-12-06 13:05:18,703 - root - INFO - 西班牙地址1含有@符号 - Code:400344 - msg:Address1 contain @
+2017-12-06 13:05:19,119 - root - INFO - 西班牙地址1为纯数字 - Code:400343 - msg:Address1 is numeric
+2017-12-06 13:05:19,526 - root - INFO - 法国lname大于40字符 - Code:400341 - msg:Lname over 40
+2017-12-06 13:05:19,941 - root - INFO - 西班牙地址2含有@符号 - Code:400348 - msg:Address2 contain @
+2017-12-06 13:05:20,332 - root - INFO - 西班牙地址2为纯数字 - Code:400347 - msg:Address2 is numeric
+2017-12-06 13:05:20,734 - root - INFO - 西班牙地址2大于40字符 - Code:400352 - msg:Address2 over 40
+2017-12-06 13:05:21,137 - root - INFO - 西班牙tel小于5位数字 - Code:400311 - msg:tel number error.
+2017-12-06 13:05:21,535 - root - INFO - 西班牙tel为非数字字符 - Code:400311 - msg:tel number error.
+2017-12-06 13:05:21,923 - root - INFO - 西班牙tel大于13位数字 - Code:400311 - msg:tel number error.
+2017-12-06 13:05:22,318 - root - INFO - 西班牙postcode非5位纯数字 - Code:400323 - msg:Postcode is invalid
+2017-12-06 13:05:22,739 - root - INFO - 西班牙正常编辑地址 - Code:0 - msg:ok
+2017-12-06 13:05:23,142 - root - INFO - 英国fname小于2字符 - Code:400305 - msg:fname not less than 2.
+2017-12-06 13:05:23,553 - root - INFO - 英国fname大于40字符 - Code:400340 - msg:Fname over 40
+2017-12-06 13:05:24,003 - root - INFO - 法国city小于2字符 - Code:400309 - msg:city not less than 2.
+2017-12-06 13:05:24,424 - root - INFO - 英国fname含非法字符 - Code:400358 - msg:Fname contain unlegal character
+2017-12-06 13:05:24,837 - root - INFO - 英国lname小于2字符 - Code:400306 - msg:lname not less than 2.
+2017-12-06 13:05:25,325 - root - INFO - 英国lname大于40字符 - Code:400341 - msg:Lname over 40
+2017-12-06 13:05:25,723 - root - INFO - 英国lname含非法字符 - Code:400359 - msg:Lname contain unlegal character
+2017-12-06 13:05:26,125 - root - INFO - 英国city小于2字符 - Code:400309 - msg:city not less than 2.
+2017-12-06 13:05:26,519 - root - INFO - 英国city大于40字符 - Code:400349 - msg:City over 40
+2017-12-06 13:05:26,929 - root - INFO - 英国city为纯数字 - Code:400350 - msg:City is numeric
+2017-12-06 13:05:27,309 - root - INFO - 英国地址1小于5字符 - Code:400307 - msg:address error.
+2017-12-06 13:05:27,700 - root - INFO - 英国地址1大于35字符 - Code:400353 - msg:Address1 over 35
+2017-12-06 13:05:28,165 - root - INFO - 英国地址1含非法字符 - Code:400360 - msg:Address1 contain unlegal character
+2017-12-06 13:05:28,557 - root - INFO - 法国city大于40字符 - Code:400349 - msg:City over 40
+2017-12-06 13:05:28,933 - root - INFO - 英国地址1为纯数字 - Code:400343 - msg:Address1 is numeric
+2017-12-06 13:05:29,326 - root - INFO - 英国地址2含非法字符 - Code:400361 - msg:Address2 contain unlegal character
+2017-12-06 13:05:29,739 - root - INFO - 英国地址2为纯数字 - Code:400347 - msg:Address2 is numeric
+2017-12-06 13:05:30,146 - root - INFO - 英国地址2大于35字符 - Code:400354 - msg:Address2 over 35
+2017-12-06 13:05:30,528 - root - INFO - 英国tel小于5位数字 - Code:400311 - msg:tel number error.
+2017-12-06 13:05:30,891 - root - INFO - 英国tel为非数字字符 - Code:400311 - msg:tel number error.
+2017-12-06 13:05:31,288 - root - INFO - 英国tel大于16位数字 - Code:400311 - msg:tel number error.
+2017-12-06 13:05:31,717 - root - INFO - 英国postcode非正确格式 - Code:400323 - msg:Postcode is invalid
+2017-12-06 13:05:32,138 - root - INFO - 英国正常编辑地址 - Code:0 - msg:ok
+2017-12-06 13:05:32,555 - root - INFO - 意大利fname小于2字符 - Code:400305 - msg:fname not less than 2.
+2017-12-06 13:05:32,955 - root - INFO - 法国city为纯数字 - Code:400350 - msg:City is numeric
+2017-12-06 13:05:33,378 - root - INFO - 意大利fname大于40字符 - Code:400340 - msg:Fname over 40
+2017-12-06 13:05:33,792 - root - INFO - 意大利lname小于2字符 - Code:400306 - msg:lname not less than 2.
+2017-12-06 13:05:34,183 - root - INFO - 意大利lname大于40字符 - Code:400341 - msg:Lname over 40
+2017-12-06 13:05:34,609 - root - INFO - 意大利city小于2字符 - Code:400309 - msg:city not less than 2.
+2017-12-06 13:05:34,983 - root - INFO - 意大利city大于40字符 - Code:400349 - msg:City over 40
+2017-12-06 13:05:35,351 - root - INFO - 意大利city为纯数字 - Code:400350 - msg:City is numeric
+2017-12-06 13:05:35,746 - root - INFO - 意大利地址1小于5字符 - Code:400307 - msg:address error.
+2017-12-06 13:05:36,122 - root - INFO - 意大利地址1大于40字符 - Code:400351 - msg:Address1 over 40
+2017-12-06 13:05:36,512 - root - INFO - 意大利地址1含有@符号 - Code:400344 - msg:Address1 contain @
+2017-12-06 13:05:36,901 - root - INFO - 意大利地址1为纯数字 - Code:400343 - msg:Address1 is numeric
+2017-12-06 13:05:37,280 - root - INFO - 法国地址1小于5字符 - Code:400307 - msg:address error.
+2017-12-06 13:05:37,666 - root - INFO - 意大利地址2含有@符号 - Code:400348 - msg:Address2 contain @
+2017-12-06 13:05:38,090 - root - INFO - 意大利地址2为纯数字 - Code:400347 - msg:Address2 is numeric
+2017-12-06 13:05:38,486 - root - INFO - 意大利地址2大于40字符 - Code:400352 - msg:Address2 over 40
+2017-12-06 13:05:38,897 - root - INFO - 意大利tel小于5位数字 - Code:400311 - msg:tel number error.
+2017-12-06 13:05:39,285 - root - INFO - 意大利tel为非数字字符 - Code:400311 - msg:tel number error.
+2017-12-06 13:05:39,665 - root - INFO - 意大利postcode非正确格式 - Code:400323 - msg:Postcode is invalid
+2017-12-06 13:05:40,039 - root - INFO - 意大利state为空 - Code:400317 - msg:state can't be empty.
+2017-12-06 13:05:40,418 - root - INFO - 意大利正常编辑地址 - Code:0 - msg:ok
+2017-12-06 13:05:40,783 - root - INFO - 加拿大fname小于4字符 - Code:400305 - msg:fname not less than 2.
+2017-12-06 13:05:41,147 - root - INFO - 加拿大fname大于35字符 - Code:400305 - msg:fname not less than 2.
+2017-12-06 13:05:41,518 - root - INFO - 法国地址1大于90字符 - Code:400342 - msg:Address1 over 90
+2017-12-06 13:05:41,876 - root - INFO - 加拿大city小于2字符 - Code:400309 - msg:city not less than 2.
+2017-12-06 13:05:42,236 - root - INFO - 加拿大city大于35字符 - Code:400309 - msg:city not less than 2.
+2017-12-06 13:05:42,590 - root - INFO - 加拿大city为纯数字 - Code:400350 - msg:City is numeric
+2017-12-06 13:05:42,949 - root - INFO - 加拿大地址1小于5字符 - Code:400307 - msg:address error.
+2017-12-06 13:05:43,307 - root - INFO - 加拿大地址1大于35字符 - Code:400307 - msg:address error.
+2017-12-06 13:05:43,671 - root - INFO - 加拿大地址1为纯数字 - Code:400343 - msg:Address1 is numeric
+2017-12-06 13:05:44,035 - root - INFO - 加拿大地址2为纯数字 - Code:400347 - msg:Address2 is numeric
+2017-12-06 13:05:44,469 - root - INFO - 加拿大地址2大于35字符 - Code:400354 - msg:Address2 over 35
+2017-12-06 13:05:44,983 - root - INFO - 加拿大tel小于5位数字 - Code:400311 - msg:tel number error.
+2017-12-06 13:05:45,500 - root - INFO - 加拿大tel为非数字字符 - Code:400311 - msg:tel number error.
+2017-12-06 13:05:46,010 - root - INFO - 法国地址1含有@符号 - Code:400344 - msg:Address1 contain @
+2017-12-06 13:05:46,384 - root - INFO - 加拿大tel大于25位数字 - Code:400311 - msg:tel number error.
+2017-12-06 13:05:46,751 - root - INFO - 加拿大postcode非正确格式 - Code:400323 - msg:Postcode is invalid
+2017-12-06 13:05:47,114 - root - INFO - 加拿大正常编辑地址 - Code:0 - msg:ok
+2017-12-06 13:05:47,486 - root - INFO - 墨西哥fname小于4字符 - Code:400305 - msg:fname not less than 2.
+2017-12-06 13:05:47,838 - root - INFO - 墨西哥fname大于34字符 - Code:400305 - msg:fname not less than 2.
+2017-12-06 13:05:48,207 - root - INFO - 墨西哥city小于2字符 - Code:400309 - msg:city not less than 2.
+2017-12-06 13:05:48,580 - root - INFO - 墨西哥city大于35字符 - Code:400309 - msg:city not less than 2.
+2017-12-06 13:05:48,953 - root - INFO - 墨西哥city为纯数字 - Code:400350 - msg:City is numeric
+2017-12-06 13:05:49,332 - root - INFO - 墨西哥地址1小于5字符 - Code:400307 - msg:address error.
+2017-12-06 13:05:49,703 - root - INFO - 墨西哥地址1大于35字符 - Code:400307 - msg:address error.
+2017-12-06 13:05:50,084 - root - INFO - 法国fname小于2字符 - Code:400305 - msg:fname not less than 2.
+2017-12-06 13:05:50,450 - root - INFO - 法国fname大于40字符 - Code:400340 - msg:Fname over 40
+2017-12-06 13:05:50,822 - root - INFO - 法国地址1为纯数字 - Code:400343 - msg:Address1 is numeric
+2017-12-06 13:05:51,190 - root - INFO - 墨西哥地址1为纯数字 - Code:400343 - msg:Address1 is numeric
+2017-12-06 13:05:51,565 - root - INFO - 墨西哥地址2为纯数字 - Code:400347 - msg:Address2 is numeric
+2017-12-06 13:05:51,936 - root - INFO - 墨西哥地址2大于35字符 - Code:400354 - msg:Address2 over 35
+2017-12-06 13:05:52,302 - root - INFO - 墨西哥tel小于5位数字 - Code:400311 - msg:tel number error.
+2017-12-06 13:05:52,673 - root - INFO - 墨西哥tel为非数字字符 - Code:400311 - msg:tel number error.
+2017-12-06 13:05:53,048 - root - INFO - 墨西哥tel大于25位数字 - Code:400311 - msg:tel number error.
+2017-12-06 13:05:53,433 - root - INFO - 墨西哥postcode小于4位字符 - Code:400308 - msg:postcode not less than 4.
+2017-12-06 13:05:53,820 - root - INFO - 墨西哥postcode大于12位字符 - Code:400323 - msg:Postcode is invalid
+2017-12-06 13:05:54,206 - root - INFO - 墨西哥state为空 - Code:400317 - msg:state can't be empty.
+2017-12-06 13:05:54,579 - root - INFO - 墨西哥正常编辑地址 - Code:0 - msg:ok
+2017-12-06 13:05:54,945 - root - INFO - 法国地址2含有@符号 - Code:400348 - msg:Address2 contain @
+2017-12-06 13:05:55,315 - root - INFO - 巴西税号低于11字符 - Code:400362 - msg:BZ tax number is invalid
+2017-12-06 13:05:55,679 - root - INFO - 巴西税号大于18字符 - Code:400362 - msg:BZ tax number is invalid
+2017-12-06 13:05:56,052 - root - INFO - 巴西税号正常编辑 - Code:0 - msg:ok
+2017-12-06 13:05:56,431 - root - INFO - 法国地址2为纯数字 - Code:400347 - msg:Address2 is numeric
+2017-12-06 13:05:56,797 - root - INFO - 法国地址1和地址2大于90字符 - Code:400345 - msg:Address1 and address2 total over 90
+2017-12-06 13:05:57,164 - root - INFO - 法国tel小于5位数字 - Code:400311 - msg:tel number error.
+2017-12-06 13:05:57,521 - root - INFO - 法国tel为非数字字符 - Code:400311 - msg:tel number error.
+2017-12-06 13:05:57,924 - root - INFO - 法国state为空 - Code:400317 - msg:state can't be empty.
+2017-12-06 13:05:58,290 - root - INFO - 法国postcode非5位纯数字 - Code:400323 - msg:Postcode is invalid
+2017-12-06 13:05:58,662 - root - INFO - 法国正常编辑地址 - Code:0 - msg:ok
+2017-12-06 13:05:59,028 - root - INFO - 西班牙fname小于2字符 - Code:400305 - msg:fname not less than 2.
+2017-12-06 13:05:59,393 - root - INFO - 法国lname小于2字符 - Code:400306 - msg:lname not less than 2.
+2017-12-06 13:05:59,825 - root - INFO - 西班牙fname大于40字符 - Code:400340 - msg:Fname over 40
+2017-12-06 13:06:00,194 - root - INFO - 西班牙lname小于2字符 - Code:400306 - msg:lname not less than 2.
+2017-12-06 13:06:00,557 - root - INFO - 西班牙lname大于40字符 - Code:400341 - msg:Lname over 40
+2017-12-06 13:06:00,931 - root - INFO - 西班牙city小于2字符 - Code:400309 - msg:city not less than 2.
+2017-12-06 13:06:01,299 - root - INFO - 西班牙city大于40字符 - Code:400349 - msg:City over 40
+2017-12-06 13:06:01,714 - root - INFO - 西班牙city为纯数字 - Code:400350 - msg:City is numeric
+2017-12-06 13:06:02,088 - root - INFO - 西班牙地址1小于5字符 - Code:400307 - msg:address error.
+2017-12-06 13:06:02,468 - root - INFO - 西班牙地址1大于40字符 - Code:400351 - msg:Address1 over 40
+2017-12-06 13:06:02,837 - root - INFO - 西班牙地址1含有@符号 - Code:400344 - msg:Address1 contain @
+2017-12-06 13:06:03,201 - root - INFO - 西班牙地址1为纯数字 - Code:400343 - msg:Address1 is numeric
+2017-12-06 13:06:03,629 - root - INFO - 法国lname大于40字符 - Code:400341 - msg:Lname over 40
+2017-12-06 13:06:03,994 - root - INFO - 西班牙地址2含有@符号 - Code:400348 - msg:Address2 contain @
+2017-12-06 13:06:04,395 - root - INFO - 西班牙地址2为纯数字 - Code:400347 - msg:Address2 is numeric
+2017-12-06 13:06:04,757 - root - INFO - 西班牙地址2大于40字符 - Code:400352 - msg:Address2 over 40
+2017-12-06 13:06:05,122 - root - INFO - 西班牙tel小于5位数字 - Code:400311 - msg:tel number error.
+2017-12-06 13:06:05,487 - root - INFO - 西班牙tel为非数字字符 - Code:400311 - msg:tel number error.
+2017-12-06 13:06:05,855 - root - INFO - 西班牙tel大于13位数字 - Code:400311 - msg:tel number error.
+2017-12-06 13:06:06,220 - root - INFO - 西班牙postcode非5位纯数字 - Code:400323 - msg:Postcode is invalid
+2017-12-06 13:06:06,632 - root - INFO - 西班牙正常编辑地址 - Code:0 - msg:ok
+2017-12-06 13:06:06,994 - root - INFO - 英国fname小于2字符 - Code:400305 - msg:fname not less than 2.
+2017-12-06 13:06:07,358 - root - INFO - 英国fname大于40字符 - Code:400340 - msg:Fname over 40
+2017-12-06 13:06:07,722 - root - INFO - 法国city小于2字符 - Code:400309 - msg:city not less than 2.
+2017-12-06 13:06:08,117 - root - INFO - 英国fname含非法字符 - Code:400358 - msg:Fname contain unlegal character
+2017-12-06 13:06:08,477 - root - INFO - 英国lname小于2字符 - Code:400306 - msg:lname not less than 2.
+2017-12-06 13:06:08,846 - root - INFO - 英国lname大于40字符 - Code:400341 - msg:Lname over 40
+2017-12-06 13:06:09,208 - root - INFO - 英国lname含非法字符 - Code:400359 - msg:Lname contain unlegal character
+2017-12-06 13:06:09,573 - root - INFO - 英国city小于2字符 - Code:400309 - msg:city not less than 2.
+2017-12-06 13:06:09,918 - root - INFO - 英国city大于40字符 - Code:400349 - msg:City over 40
+2017-12-06 13:06:10,283 - root - INFO - 英国city为纯数字 - Code:400350 - msg:City is numeric
+2017-12-06 13:06:10,646 - root - INFO - 英国地址1小于5字符 - Code:400307 - msg:address error.
+2017-12-06 13:06:10,992 - root - INFO - 英国地址1大于35字符 - Code:400353 - msg:Address1 over 35
+2017-12-06 13:06:11,356 - root - INFO - 英国地址1含非法字符 - Code:400360 - msg:Address1 contain unlegal character
+2017-12-06 13:06:11,723 - root - INFO - 法国city大于40字符 - Code:400349 - msg:City over 40
+2017-12-06 13:06:12,135 - root - INFO - 英国地址1为纯数字 - Code:400343 - msg:Address1 is numeric
+2017-12-06 13:06:12,497 - root - INFO - 英国地址2含非法字符 - Code:400361 - msg:Address2 contain unlegal character
+2017-12-06 13:06:12,863 - root - INFO - 英国地址2为纯数字 - Code:400347 - msg:Address2 is numeric
+2017-12-06 13:06:13,226 - root - INFO - 英国地址2大于35字符 - Code:400354 - msg:Address2 over 35
+2017-12-06 13:06:13,589 - root - INFO - 英国tel小于5位数字 - Code:400311 - msg:tel number error.
+2017-12-06 13:06:13,955 - root - INFO - 英国tel为非数字字符 - Code:400311 - msg:tel number error.
+2017-12-06 13:06:14,316 - root - INFO - 英国tel大于16位数字 - Code:400311 - msg:tel number error.
+2017-12-06 13:06:14,685 - root - INFO - 英国postcode非正确格式 - Code:400323 - msg:Postcode is invalid
+2017-12-06 13:06:15,103 - root - INFO - 英国正常编辑地址 - Code:0 - msg:ok
+2017-12-06 13:06:15,469 - root - INFO - 意大利fname小于2字符 - Code:400305 - msg:fname not less than 2.
+2017-12-06 13:06:15,846 - root - INFO - 法国city为纯数字 - Code:400350 - msg:City is numeric
+2017-12-06 13:06:16,212 - root - INFO - 意大利fname大于40字符 - Code:400340 - msg:Fname over 40
+2017-12-06 13:06:16,584 - root - INFO - 意大利lname小于2字符 - Code:400306 - msg:lname not less than 2.
+2017-12-06 13:06:16,989 - root - INFO - 意大利lname大于40字符 - Code:400341 - msg:Lname over 40
+2017-12-06 13:06:17,350 - root - INFO - 意大利city小于2字符 - Code:400309 - msg:city not less than 2.
+2017-12-06 13:06:17,709 - root - INFO - 意大利city大于40字符 - Code:400349 - msg:City over 40
+2017-12-06 13:06:18,075 - root - INFO - 意大利city为纯数字 - Code:400350 - msg:City is numeric
+2017-12-06 13:06:18,441 - root - INFO - 意大利地址1小于5字符 - Code:400307 - msg:address error.
+2017-12-06 13:06:18,807 - root - INFO - 意大利地址1大于40字符 - Code:400351 - msg:Address1 over 40
+2017-12-06 13:06:19,173 - root - INFO - 意大利地址1含有@符号 - Code:400344 - msg:Address1 contain @
+2017-12-06 13:06:19,538 - root - INFO - 意大利地址1为纯数字 - Code:400343 - msg:Address1 is numeric
+2017-12-06 13:06:19,947 - root - INFO - 法国地址1小于5字符 - Code:400307 - msg:address error.
+2017-12-06 13:06:20,314 - root - INFO - 意大利地址2含有@符号 - Code:400348 - msg:Address2 contain @
+2017-12-06 13:06:20,678 - root - INFO - 意大利地址2为纯数字 - Code:400347 - msg:Address2 is numeric
+2017-12-06 13:06:21,043 - root - INFO - 意大利地址2大于40字符 - Code:400352 - msg:Address2 over 40
+2017-12-06 13:06:21,426 - root - INFO - 意大利tel小于5位数字 - Code:400311 - msg:tel number error.
+2017-12-06 13:06:21,848 - root - INFO - 意大利tel为非数字字符 - Code:400311 - msg:tel number error.
+2017-12-06 13:06:22,212 - root - INFO - 意大利postcode非正确格式 - Code:400323 - msg:Postcode is invalid
+2017-12-06 13:06:22,581 - root - INFO - 意大利state为空 - Code:400317 - msg:state can't be empty.
+2017-12-06 13:06:22,951 - root - INFO - 意大利正常编辑地址 - Code:0 - msg:ok
+2017-12-06 13:06:23,819 - root - INFO - 加拿大fname小于4字符 - Code:400305 - msg:fname not less than 2.
+2017-12-06 13:06:24,179 - root - INFO - 加拿大fname大于35字符 - Code:400305 - msg:fname not less than 2.
+2017-12-06 13:06:24,540 - root - INFO - 法国地址1大于90字符 - Code:400342 - msg:Address1 over 90
+2017-12-06 13:06:24,905 - root - INFO - 加拿大city小于2字符 - Code:400309 - msg:city not less than 2.
+2017-12-06 13:06:25,313 - root - INFO - 加拿大city大于35字符 - Code:400309 - msg:city not less than 2.
+2017-12-06 13:06:25,680 - root - INFO - 加拿大city为纯数字 - Code:400350 - msg:City is numeric
+2017-12-06 13:06:26,048 - root - INFO - 加拿大地址1小于5字符 - Code:400307 - msg:address error.
+2017-12-06 13:06:26,416 - root - INFO - 加拿大地址1大于35字符 - Code:400307 - msg:address error.
+2017-12-06 13:06:26,780 - root - INFO - 加拿大地址1为纯数字 - Code:400343 - msg:Address1 is numeric
+2017-12-06 13:06:27,140 - root - INFO - 加拿大地址2为纯数字 - Code:400347 - msg:Address2 is numeric
+2017-12-06 13:06:27,501 - root - INFO - 加拿大地址2大于35字符 - Code:400354 - msg:Address2 over 35
+2017-12-06 13:06:27,866 - root - INFO - 加拿大tel小于5位数字 - Code:400311 - msg:tel number error.
+2017-12-06 13:06:28,234 - root - INFO - 加拿大tel为非数字字符 - Code:400311 - msg:tel number error.
+2017-12-06 13:06:28,600 - root - INFO - 法国地址1含有@符号 - Code:400344 - msg:Address1 contain @
+2017-12-06 13:06:28,999 - root - INFO - 加拿大tel大于25位数字 - Code:400311 - msg:tel number error.
+2017-12-06 13:06:29,364 - root - INFO - 加拿大postcode非正确格式 - Code:400323 - msg:Postcode is invalid
+2017-12-06 13:06:29,988 - root - INFO - 加拿大正常编辑地址 - Code:0 - msg:ok
+2017-12-06 13:06:30,556 - root - INFO - 墨西哥fname小于4字符 - Code:400305 - msg:fname not less than 2.
+2017-12-06 13:06:31,078 - root - INFO - 墨西哥fname大于34字符 - Code:400305 - msg:fname not less than 2.
+2017-12-06 13:06:31,443 - root - INFO - 墨西哥city小于2字符 - Code:400309 - msg:city not less than 2.
+2017-12-06 13:06:31,871 - root - INFO - 墨西哥city大于35字符 - Code:400309 - msg:city not less than 2.
+2017-12-06 13:06:32,236 - root - INFO - 墨西哥city为纯数字 - Code:400350 - msg:City is numeric
+2017-12-06 13:06:32,604 - root - INFO - 墨西哥地址1小于5字符 - Code:400307 - msg:address error.
+2017-12-06 13:06:32,971 - root - INFO - 墨西哥地址1大于35字符 - Code:400307 - msg:address error.
+2017-12-06 13:06:33,214 - root - INFO - *********TEST END*********
+2017-12-06 13:06:33,215 - root - INFO - Doesn't send report email to developer.

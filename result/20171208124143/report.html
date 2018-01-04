@@ -1,0 +1,5192 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>接口测试报告</title>
+    <meta name="generator" content="HTMLTestRunner 0.8.2"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    
+<style type="text/css" media="screen">
+body        { font-family: verdana, arial, helvetica, sans-serif; font-size: 80%; }
+table       { font-size: 100%; }
+pre         { }
+
+/* -- heading ---------------------------------------------------------------------- */
+h1 {
+    font-size: 16pt;
+    color: gray;
+}
+.heading {
+    margin-top: 0ex;
+    margin-bottom: 1ex;
+}
+
+.heading .attribute {
+    margin-top: 1ex;
+    margin-bottom: 0;
+}
+
+.heading .description {
+    margin-top: 4ex;
+    margin-bottom: 6ex;
+}
+.report_pie{
+    float:right;
+    margin-top:-190px;
+    margin-right:600px;
+    width:280px;
+    height:210px;
+    background-color:#999;
+}
+.report_pie img {
+    width: 100%;
+    height: 100%;
+}
+.big_pie{
+    position:absolute;
+    border: 2px solid #999;
+    top:10px;
+    right:100px;
+    bottom:-20px;
+    width:525px;
+    height:390px;
+    z-index: 2;
+    display: none;
+}
+.big_pie img {
+    width: 100%;
+    height: 100%;
+}
+
+
+/* -- css div popup ------------------------------------------------------------------------ */
+a.popup_link {
+}
+
+a.popup_link:hover {
+    color: red;
+}
+
+.popup_window {
+    display: none;
+    position: relative;
+    left: 0px;
+    top: 0px;
+    /*border: solid #627173 1px; */
+    padding: 10px;
+    background-color: #E6E6D6;
+    font-family: "Lucida Console", "Courier New", Courier, monospace;
+    text-align: left;
+    font-size: 8pt;
+    width: 800px;
+
+}
+
+}
+/* -- report ------------------------------------------------------------------------ */
+#show_detail_line {
+    margin-top: 3ex;
+    margin-bottom: 1ex;
+}
+#result_table {
+    position:absolute;
+    width: 80%;
+    border-collapse: collapse;
+    border: 1px solid #777;
+    z-index: 1;
+}
+#header_row {
+    font-weight: bold;
+    color: white;
+    background-color: #777;
+    text-align:center;
+}
+#result_table td {
+    border: 1px solid #777;
+    padding: 2px;
+}
+#total_row  { font-weight: bold; }
+.passClass  { background-color: #6c6; }
+.failClass  { background-color: #c60; }
+.errorClass { background-color: #c00; }
+.passCase   { color: #6c6; }
+.failCase   { color: #c60; font-weight: bold; }
+.errorCase  { color: #c00; font-weight: bold; }
+.hiddenRow  { display: none; }
+.testcase   { margin-left: 2em; }
+
+
+/* -- ending ---------------------------------------------------------------------- */
+#ending {
+}
+
+</style>
+
+</head>
+<body>
+<script language="javascript" type="text/javascript"><!--
+output_list = Array();
+
+/* level - 0:Summary; 1:Failed; 2:All */
+function showCase(level) {
+    trs = document.getElementsByTagName("tr");
+    for (var i = 0; i < trs.length; i++) {
+        tr = trs[i];
+        id = tr.id;
+        if (id.substr(0,2) == 'ft') {
+            if (level < 1) {
+                tr.className = 'hiddenRow';
+            }
+            else {
+                tr.className = '';
+            }
+        }
+        if (id.substr(0,2) == 'pt') {
+            if (level > 1) {
+                tr.className = '';
+            }
+            else {
+                tr.className = 'hiddenRow';
+            }
+        }
+    }
+}
+
+
+function showClassDetail(cid, count) {
+    var id_list = Array(count);
+    var toHide = 1;
+    for (var i = 0; i < count; i++) {
+        tid0 = 't' + cid.substr(1) + '.' + (i+1);
+        tid = 'f' + tid0;
+        tr = document.getElementById(tid);
+        if (!tr) {
+            tid = 'p' + tid0;
+            tr = document.getElementById(tid);
+        }
+        id_list[i] = tid;
+        if (tr.className) {
+            toHide = 0;
+        }
+    }
+    for (var i = 0; i < count; i++) {
+        tid = id_list[i];
+        if (toHide) {
+            document.getElementById('div_'+tid).style.display = 'none'
+            document.getElementById(tid).className = 'hiddenRow';
+        }
+        else {
+            document.getElementById(tid).className = '';
+        }
+    }
+}
+
+function showTestDetail(div_id){
+    var details_div = document.getElementById(div_id)
+    var displayState = details_div.style.display
+    // alert(displayState)
+    if (displayState != 'block' ) {
+        displayState = 'block'
+        details_div.style.display = 'block'
+    }
+    else {
+        details_div.style.display = 'none'
+    }
+}
+
+
+function html_escape(s) {
+    s = s.replace(/&/g,'&amp;');
+    s = s.replace(/</g,'&lt;');
+    s = s.replace(/>/g,'&gt;');
+    return s;
+}
+
+/*显示饼图的大图*/
+function bigImg() {
+    var big_pie = document.getElementById("big_pie")
+    big_pie.style.display = "block"
+}
+function normalImg() {
+    var big_pie = document.getElementById("big_pie")
+    big_pie.style.display = "none"
+}
+
+/* obsoleted by detail in <div>
+function showOutput(id, name) {
+    var w = window.open("", //url
+                    name,
+                    "resizable,scrollbars,status,width=800,height=450");
+    d = w.document;
+    d.write("<pre>");
+    d.write(html_escape(output_list[id]));
+    d.write("\n");
+    d.write("<a href='javascript:window.close()'>close</a>\n");
+    d.write("</pre>\n");
+    d.close();
+}
+*/
+--></script>
+
+<div class='heading'>
+<h1>接口测试报告</h1>
+<p class='attribute'><strong>Start Time:</strong> 2017-12-08 12:41:44</p>
+<p class='attribute'><strong>Duration:</strong> 0:02:04.789137</p>
+<p class='attribute'><strong>Status:</strong> Pass 113</p>
+
+<p class='description'>Test Description</p>
+</div>
+<div onmousemove="bigImg(this)" onmouseout="normalImg(this)" class='report_pie'>
+<img src='../../result/20171208124143/pie.png'>
+</div>
+<div id="big_pie" class='big_pie'>
+<img src='../../result/20171208124143/pie.png'>
+</div>
+
+
+
+<p id='show_detail_line'>Show
+<a href='javascript:showCase(0)'>Summary</a>
+<a href='javascript:showCase(1)'>Failed</a>
+<a href='javascript:showCase(2)'>All</a>
+</p>
+<table id='result_table'>
+<colgroup>
+<col align='left' />
+<col align='right' />
+<col align='right' />
+<col align='right' />
+<col align='right' />
+<col align='right' />
+</colgroup>
+<tr id='header_row'>
+    <td colspan='2'>Test Group/Test case</td>
+    <td>Count</td>
+    <td>Pass</td>
+    <td>Fail</td>
+    <td>Error</td>
+    <td>View</td>
+</tr>
+
+<tr class='passClass '>
+    <td>paramunittest.EditOrderAddress_0</td>
+    <td>法国fname小于2字符</td>
+    <td>1</td>
+    <td>1</td>
+    <td>0</td>
+    <td>0</td>
+    <td><a href="javascript:showClassDetail('c1',1)">查看详细</a></td>
+</tr>
+
+<tr id='pt1.1' class='hiddenRow'>
+    <td colspan='2' class='none'><div class='testcase'>testAddAddress</div></td>
+    <td colspan='7' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.1')" >
+        pass</a>
+
+    <div id='div_pt1.1' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt1.1').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt1.1: 
+请求地址：http://api.shein.com/v2/order/order/editOrderAddress
+
+请求返回值：
+{
+    "code": "400305",
+    "info": null,
+    "msg": "fname not less than 2."
+}
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr class='passClass '>
+    <td>paramunittest.EditOrderAddress_1</td>
+    <td>法国fname大于40字符</td>
+    <td>1</td>
+    <td>1</td>
+    <td>0</td>
+    <td>0</td>
+    <td><a href="javascript:showClassDetail('c2',1)">查看详细</a></td>
+</tr>
+
+<tr id='pt2.1' class='hiddenRow'>
+    <td colspan='2' class='none'><div class='testcase'>testAddAddress</div></td>
+    <td colspan='7' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt2.1')" >
+        pass</a>
+
+    <div id='div_pt2.1' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt2.1').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt2.1: 
+请求地址：http://api.shein.com/v2/order/order/editOrderAddress
+
+请求返回值：
+{
+    "code": "400340",
+    "info": null,
+    "msg": "Fname over 40"
+}
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr class='passClass '>
+    <td>paramunittest.EditOrderAddress_10</td>
+    <td>法国地址1为纯数字</td>
+    <td>1</td>
+    <td>1</td>
+    <td>0</td>
+    <td>0</td>
+    <td><a href="javascript:showClassDetail('c3',1)">查看详细</a></td>
+</tr>
+
+<tr id='pt3.1' class='hiddenRow'>
+    <td colspan='2' class='none'><div class='testcase'>testAddAddress</div></td>
+    <td colspan='7' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt3.1')" >
+        pass</a>
+
+    <div id='div_pt3.1' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt3.1').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt3.1: 
+请求地址：http://api.shein.com/v2/order/order/editOrderAddress
+
+请求返回值：
+{
+    "code": "400343",
+    "info": null,
+    "msg": "Address1 is numeric"
+}
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr class='passClass '>
+    <td>paramunittest.EditOrderAddress_100</td>
+    <td>墨西哥地址1为纯数字</td>
+    <td>1</td>
+    <td>1</td>
+    <td>0</td>
+    <td>0</td>
+    <td><a href="javascript:showClassDetail('c4',1)">查看详细</a></td>
+</tr>
+
+<tr id='pt4.1' class='hiddenRow'>
+    <td colspan='2' class='none'><div class='testcase'>testAddAddress</div></td>
+    <td colspan='7' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt4.1')" >
+        pass</a>
+
+    <div id='div_pt4.1' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt4.1').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt4.1: 
+请求地址：http://api.shein.com/v2/order/order/editOrderAddress
+
+请求返回值：
+{
+    "code": "400343",
+    "info": null,
+    "msg": "Address1 is numeric"
+}
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr class='passClass '>
+    <td>paramunittest.EditOrderAddress_101</td>
+    <td>墨西哥地址2为纯数字</td>
+    <td>1</td>
+    <td>1</td>
+    <td>0</td>
+    <td>0</td>
+    <td><a href="javascript:showClassDetail('c5',1)">查看详细</a></td>
+</tr>
+
+<tr id='pt5.1' class='hiddenRow'>
+    <td colspan='2' class='none'><div class='testcase'>testAddAddress</div></td>
+    <td colspan='7' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt5.1')" >
+        pass</a>
+
+    <div id='div_pt5.1' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt5.1').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt5.1: 
+请求地址：http://api.shein.com/v2/order/order/editOrderAddress
+
+请求返回值：
+{
+    "code": "400347",
+    "info": null,
+    "msg": "Address2 is numeric"
+}
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr class='passClass '>
+    <td>paramunittest.EditOrderAddress_102</td>
+    <td>墨西哥地址2大于35字符</td>
+    <td>1</td>
+    <td>1</td>
+    <td>0</td>
+    <td>0</td>
+    <td><a href="javascript:showClassDetail('c6',1)">查看详细</a></td>
+</tr>
+
+<tr id='pt6.1' class='hiddenRow'>
+    <td colspan='2' class='none'><div class='testcase'>testAddAddress</div></td>
+    <td colspan='7' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt6.1')" >
+        pass</a>
+
+    <div id='div_pt6.1' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt6.1').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt6.1: 
+请求地址：http://api.shein.com/v2/order/order/editOrderAddress
+
+请求返回值：
+{
+    "code": "400354",
+    "info": null,
+    "msg": "Address2 over 35"
+}
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr class='passClass '>
+    <td>paramunittest.EditOrderAddress_103</td>
+    <td>墨西哥tel小于5位数字</td>
+    <td>1</td>
+    <td>1</td>
+    <td>0</td>
+    <td>0</td>
+    <td><a href="javascript:showClassDetail('c7',1)">查看详细</a></td>
+</tr>
+
+<tr id='pt7.1' class='hiddenRow'>
+    <td colspan='2' class='none'><div class='testcase'>testAddAddress</div></td>
+    <td colspan='7' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt7.1')" >
+        pass</a>
+
+    <div id='div_pt7.1' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt7.1').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt7.1: 
+请求地址：http://api.shein.com/v2/order/order/editOrderAddress
+
+请求返回值：
+{
+    "code": "400311",
+    "info": null,
+    "msg": "tel number error."
+}
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr class='passClass '>
+    <td>paramunittest.EditOrderAddress_104</td>
+    <td>墨西哥tel为非数字字符</td>
+    <td>1</td>
+    <td>1</td>
+    <td>0</td>
+    <td>0</td>
+    <td><a href="javascript:showClassDetail('c8',1)">查看详细</a></td>
+</tr>
+
+<tr id='pt8.1' class='hiddenRow'>
+    <td colspan='2' class='none'><div class='testcase'>testAddAddress</div></td>
+    <td colspan='7' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt8.1')" >
+        pass</a>
+
+    <div id='div_pt8.1' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt8.1').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt8.1: 
+请求地址：http://api.shein.com/v2/order/order/editOrderAddress
+
+请求返回值：
+{
+    "code": "400311",
+    "info": null,
+    "msg": "tel number error."
+}
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr class='passClass '>
+    <td>paramunittest.EditOrderAddress_105</td>
+    <td>墨西哥tel大于25位数字</td>
+    <td>1</td>
+    <td>1</td>
+    <td>0</td>
+    <td>0</td>
+    <td><a href="javascript:showClassDetail('c9',1)">查看详细</a></td>
+</tr>
+
+<tr id='pt9.1' class='hiddenRow'>
+    <td colspan='2' class='none'><div class='testcase'>testAddAddress</div></td>
+    <td colspan='7' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt9.1')" >
+        pass</a>
+
+    <div id='div_pt9.1' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt9.1').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt9.1: 
+请求地址：http://api.shein.com/v2/order/order/editOrderAddress
+
+请求返回值：
+{
+    "code": "400311",
+    "info": null,
+    "msg": "tel number error."
+}
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr class='passClass '>
+    <td>paramunittest.EditOrderAddress_106</td>
+    <td>墨西哥postcode小于4位字符</td>
+    <td>1</td>
+    <td>1</td>
+    <td>0</td>
+    <td>0</td>
+    <td><a href="javascript:showClassDetail('c10',1)">查看详细</a></td>
+</tr>
+
+<tr id='pt10.1' class='hiddenRow'>
+    <td colspan='2' class='none'><div class='testcase'>testAddAddress</div></td>
+    <td colspan='7' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt10.1')" >
+        pass</a>
+
+    <div id='div_pt10.1' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt10.1').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt10.1: 
+请求地址：http://api.shein.com/v2/order/order/editOrderAddress
+
+请求返回值：
+{
+    "code": "400308",
+    "info": null,
+    "msg": "postcode not less than 4."
+}
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr class='passClass '>
+    <td>paramunittest.EditOrderAddress_107</td>
+    <td>墨西哥postcode大于12位字符</td>
+    <td>1</td>
+    <td>1</td>
+    <td>0</td>
+    <td>0</td>
+    <td><a href="javascript:showClassDetail('c11',1)">查看详细</a></td>
+</tr>
+
+<tr id='pt11.1' class='hiddenRow'>
+    <td colspan='2' class='none'><div class='testcase'>testAddAddress</div></td>
+    <td colspan='7' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt11.1')" >
+        pass</a>
+
+    <div id='div_pt11.1' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt11.1').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt11.1: 
+请求地址：http://api.shein.com/v2/order/order/editOrderAddress
+
+请求返回值：
+{
+    "code": "400323",
+    "info": null,
+    "msg": "Postcode is invalid"
+}
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr class='passClass '>
+    <td>paramunittest.EditOrderAddress_108</td>
+    <td>墨西哥state为空</td>
+    <td>1</td>
+    <td>1</td>
+    <td>0</td>
+    <td>0</td>
+    <td><a href="javascript:showClassDetail('c12',1)">查看详细</a></td>
+</tr>
+
+<tr id='pt12.1' class='hiddenRow'>
+    <td colspan='2' class='none'><div class='testcase'>testAddAddress</div></td>
+    <td colspan='7' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt12.1')" >
+        pass</a>
+
+    <div id='div_pt12.1' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt12.1').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt12.1: 
+请求地址：http://api.shein.com/v2/order/order/editOrderAddress
+
+请求返回值：
+{
+    "code": "400317",
+    "info": null,
+    "msg": "state can't be empty."
+}
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr class='passClass '>
+    <td>paramunittest.EditOrderAddress_109</td>
+    <td>墨西哥正常编辑地址</td>
+    <td>1</td>
+    <td>1</td>
+    <td>0</td>
+    <td>0</td>
+    <td><a href="javascript:showClassDetail('c13',1)">查看详细</a></td>
+</tr>
+
+<tr id='pt13.1' class='hiddenRow'>
+    <td colspan='2' class='none'><div class='testcase'>testAddAddress</div></td>
+    <td colspan='7' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt13.1')" >
+        pass</a>
+
+    <div id='div_pt13.1' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt13.1').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt13.1: 
+请求地址：http://api.shein.com/v2/order/order/editOrderAddress
+
+请求返回值：
+{
+    "code": "0",
+    "info": {
+        "code": 1,
+        "description": "",
+        "enabled": 0,
+        "exceptionKey": "SelectedCountryNotSupportCODPaymentMethod",
+        "is_display": 1,
+        "useCod": 1
+    },
+    "msg": "ok"
+}
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr class='passClass '>
+    <td>paramunittest.EditOrderAddress_11</td>
+    <td>法国地址2含有@符号</td>
+    <td>1</td>
+    <td>1</td>
+    <td>0</td>
+    <td>0</td>
+    <td><a href="javascript:showClassDetail('c14',1)">查看详细</a></td>
+</tr>
+
+<tr id='pt14.1' class='hiddenRow'>
+    <td colspan='2' class='none'><div class='testcase'>testAddAddress</div></td>
+    <td colspan='7' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt14.1')" >
+        pass</a>
+
+    <div id='div_pt14.1' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt14.1').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt14.1: 
+请求地址：http://api.shein.com/v2/order/order/editOrderAddress
+
+请求返回值：
+{
+    "code": "400348",
+    "info": null,
+    "msg": "Address2 contain @"
+}
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr class='passClass '>
+    <td>paramunittest.EditOrderAddress_110</td>
+    <td>巴西税号低于11字符</td>
+    <td>1</td>
+    <td>1</td>
+    <td>0</td>
+    <td>0</td>
+    <td><a href="javascript:showClassDetail('c15',1)">查看详细</a></td>
+</tr>
+
+<tr id='pt15.1' class='hiddenRow'>
+    <td colspan='2' class='none'><div class='testcase'>testAddAddress</div></td>
+    <td colspan='7' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt15.1')" >
+        pass</a>
+
+    <div id='div_pt15.1' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt15.1').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt15.1: 
+请求地址：http://api.shein.com/v2/order/order/editOrderAddress
+
+请求返回值：
+{
+    "code": "400362",
+    "info": null,
+    "msg": "BZ tax number is invalid"
+}
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr class='passClass '>
+    <td>paramunittest.EditOrderAddress_111</td>
+    <td>巴西税号大于18字符</td>
+    <td>1</td>
+    <td>1</td>
+    <td>0</td>
+    <td>0</td>
+    <td><a href="javascript:showClassDetail('c16',1)">查看详细</a></td>
+</tr>
+
+<tr id='pt16.1' class='hiddenRow'>
+    <td colspan='2' class='none'><div class='testcase'>testAddAddress</div></td>
+    <td colspan='7' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt16.1')" >
+        pass</a>
+
+    <div id='div_pt16.1' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt16.1').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt16.1: 
+请求地址：http://api.shein.com/v2/order/order/editOrderAddress
+
+请求返回值：
+{
+    "code": "400362",
+    "info": null,
+    "msg": "BZ tax number is invalid"
+}
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr class='passClass '>
+    <td>paramunittest.EditOrderAddress_112</td>
+    <td>巴西税号正常编辑</td>
+    <td>1</td>
+    <td>1</td>
+    <td>0</td>
+    <td>0</td>
+    <td><a href="javascript:showClassDetail('c17',1)">查看详细</a></td>
+</tr>
+
+<tr id='pt17.1' class='hiddenRow'>
+    <td colspan='2' class='none'><div class='testcase'>testAddAddress</div></td>
+    <td colspan='7' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt17.1')" >
+        pass</a>
+
+    <div id='div_pt17.1' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt17.1').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt17.1: 
+请求地址：http://api.shein.com/v2/order/order/editOrderAddress
+
+请求返回值：
+{
+    "code": "0",
+    "info": {
+        "code": 1,
+        "description": "",
+        "enabled": 0,
+        "exceptionKey": "SelectedCountryNotSupportCODPaymentMethod",
+        "is_display": 1,
+        "useCod": 1
+    },
+    "msg": "ok"
+}
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr class='passClass '>
+    <td>paramunittest.EditOrderAddress_12</td>
+    <td>法国地址2为纯数字</td>
+    <td>1</td>
+    <td>1</td>
+    <td>0</td>
+    <td>0</td>
+    <td><a href="javascript:showClassDetail('c18',1)">查看详细</a></td>
+</tr>
+
+<tr id='pt18.1' class='hiddenRow'>
+    <td colspan='2' class='none'><div class='testcase'>testAddAddress</div></td>
+    <td colspan='7' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt18.1')" >
+        pass</a>
+
+    <div id='div_pt18.1' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt18.1').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt18.1: 
+请求地址：http://api.shein.com/v2/order/order/editOrderAddress
+
+请求返回值：
+{
+    "code": "400347",
+    "info": null,
+    "msg": "Address2 is numeric"
+}
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr class='passClass '>
+    <td>paramunittest.EditOrderAddress_13</td>
+    <td>法国地址1和地址2大于90字符</td>
+    <td>1</td>
+    <td>1</td>
+    <td>0</td>
+    <td>0</td>
+    <td><a href="javascript:showClassDetail('c19',1)">查看详细</a></td>
+</tr>
+
+<tr id='pt19.1' class='hiddenRow'>
+    <td colspan='2' class='none'><div class='testcase'>testAddAddress</div></td>
+    <td colspan='7' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt19.1')" >
+        pass</a>
+
+    <div id='div_pt19.1' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt19.1').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt19.1: 
+请求地址：http://api.shein.com/v2/order/order/editOrderAddress
+
+请求返回值：
+{
+    "code": "400345",
+    "info": null,
+    "msg": "Address1 and address2 total over 90"
+}
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr class='passClass '>
+    <td>paramunittest.EditOrderAddress_14</td>
+    <td>法国tel小于5位数字</td>
+    <td>1</td>
+    <td>1</td>
+    <td>0</td>
+    <td>0</td>
+    <td><a href="javascript:showClassDetail('c20',1)">查看详细</a></td>
+</tr>
+
+<tr id='pt20.1' class='hiddenRow'>
+    <td colspan='2' class='none'><div class='testcase'>testAddAddress</div></td>
+    <td colspan='7' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt20.1')" >
+        pass</a>
+
+    <div id='div_pt20.1' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt20.1').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt20.1: 
+请求地址：http://api.shein.com/v2/order/order/editOrderAddress
+
+请求返回值：
+{
+    "code": "400311",
+    "info": null,
+    "msg": "tel number error."
+}
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr class='passClass '>
+    <td>paramunittest.EditOrderAddress_15</td>
+    <td>法国tel为非数字字符</td>
+    <td>1</td>
+    <td>1</td>
+    <td>0</td>
+    <td>0</td>
+    <td><a href="javascript:showClassDetail('c21',1)">查看详细</a></td>
+</tr>
+
+<tr id='pt21.1' class='hiddenRow'>
+    <td colspan='2' class='none'><div class='testcase'>testAddAddress</div></td>
+    <td colspan='7' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt21.1')" >
+        pass</a>
+
+    <div id='div_pt21.1' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt21.1').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt21.1: 
+请求地址：http://api.shein.com/v2/order/order/editOrderAddress
+
+请求返回值：
+{
+    "code": "400311",
+    "info": null,
+    "msg": "tel number error."
+}
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr class='passClass '>
+    <td>paramunittest.EditOrderAddress_16</td>
+    <td>法国state为空</td>
+    <td>1</td>
+    <td>1</td>
+    <td>0</td>
+    <td>0</td>
+    <td><a href="javascript:showClassDetail('c22',1)">查看详细</a></td>
+</tr>
+
+<tr id='pt22.1' class='hiddenRow'>
+    <td colspan='2' class='none'><div class='testcase'>testAddAddress</div></td>
+    <td colspan='7' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt22.1')" >
+        pass</a>
+
+    <div id='div_pt22.1' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt22.1').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt22.1: 
+请求地址：http://api.shein.com/v2/order/order/editOrderAddress
+
+请求返回值：
+{
+    "code": "400317",
+    "info": null,
+    "msg": "state can't be empty."
+}
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr class='passClass '>
+    <td>paramunittest.EditOrderAddress_17</td>
+    <td>法国postcode非5位纯数字</td>
+    <td>1</td>
+    <td>1</td>
+    <td>0</td>
+    <td>0</td>
+    <td><a href="javascript:showClassDetail('c23',1)">查看详细</a></td>
+</tr>
+
+<tr id='pt23.1' class='hiddenRow'>
+    <td colspan='2' class='none'><div class='testcase'>testAddAddress</div></td>
+    <td colspan='7' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt23.1')" >
+        pass</a>
+
+    <div id='div_pt23.1' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt23.1').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt23.1: 
+请求地址：http://api.shein.com/v2/order/order/editOrderAddress
+
+请求返回值：
+{
+    "code": "400323",
+    "info": null,
+    "msg": "Postcode is invalid"
+}
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr class='passClass '>
+    <td>paramunittest.EditOrderAddress_18</td>
+    <td>法国正常编辑地址</td>
+    <td>1</td>
+    <td>1</td>
+    <td>0</td>
+    <td>0</td>
+    <td><a href="javascript:showClassDetail('c24',1)">查看详细</a></td>
+</tr>
+
+<tr id='pt24.1' class='hiddenRow'>
+    <td colspan='2' class='none'><div class='testcase'>testAddAddress</div></td>
+    <td colspan='7' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt24.1')" >
+        pass</a>
+
+    <div id='div_pt24.1' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt24.1').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt24.1: 
+请求地址：http://api.shein.com/v2/order/order/editOrderAddress
+
+请求返回值：
+{
+    "code": "0",
+    "info": {
+        "code": 1,
+        "description": "",
+        "enabled": 0,
+        "exceptionKey": "SelectedCountryNotSupportCODPaymentMethod",
+        "is_display": 1,
+        "useCod": 1
+    },
+    "msg": "ok"
+}
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr class='passClass '>
+    <td>paramunittest.EditOrderAddress_19</td>
+    <td>西班牙fname小于2字符</td>
+    <td>1</td>
+    <td>1</td>
+    <td>0</td>
+    <td>0</td>
+    <td><a href="javascript:showClassDetail('c25',1)">查看详细</a></td>
+</tr>
+
+<tr id='pt25.1' class='hiddenRow'>
+    <td colspan='2' class='none'><div class='testcase'>testAddAddress</div></td>
+    <td colspan='7' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt25.1')" >
+        pass</a>
+
+    <div id='div_pt25.1' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt25.1').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt25.1: 
+请求地址：http://api.shein.com/v2/order/order/editOrderAddress
+
+请求返回值：
+{
+    "code": "400305",
+    "info": null,
+    "msg": "fname not less than 2."
+}
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr class='passClass '>
+    <td>paramunittest.EditOrderAddress_2</td>
+    <td>法国lname小于2字符</td>
+    <td>1</td>
+    <td>1</td>
+    <td>0</td>
+    <td>0</td>
+    <td><a href="javascript:showClassDetail('c26',1)">查看详细</a></td>
+</tr>
+
+<tr id='pt26.1' class='hiddenRow'>
+    <td colspan='2' class='none'><div class='testcase'>testAddAddress</div></td>
+    <td colspan='7' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt26.1')" >
+        pass</a>
+
+    <div id='div_pt26.1' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt26.1').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt26.1: 
+请求地址：http://api.shein.com/v2/order/order/editOrderAddress
+
+请求返回值：
+{
+    "code": "400306",
+    "info": null,
+    "msg": "lname not less than 2."
+}
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr class='passClass '>
+    <td>paramunittest.EditOrderAddress_20</td>
+    <td>西班牙fname大于40字符</td>
+    <td>1</td>
+    <td>1</td>
+    <td>0</td>
+    <td>0</td>
+    <td><a href="javascript:showClassDetail('c27',1)">查看详细</a></td>
+</tr>
+
+<tr id='pt27.1' class='hiddenRow'>
+    <td colspan='2' class='none'><div class='testcase'>testAddAddress</div></td>
+    <td colspan='7' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt27.1')" >
+        pass</a>
+
+    <div id='div_pt27.1' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt27.1').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt27.1: 
+请求地址：http://api.shein.com/v2/order/order/editOrderAddress
+
+请求返回值：
+{
+    "code": "400340",
+    "info": null,
+    "msg": "Fname over 40"
+}
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr class='passClass '>
+    <td>paramunittest.EditOrderAddress_21</td>
+    <td>西班牙lname小于2字符</td>
+    <td>1</td>
+    <td>1</td>
+    <td>0</td>
+    <td>0</td>
+    <td><a href="javascript:showClassDetail('c28',1)">查看详细</a></td>
+</tr>
+
+<tr id='pt28.1' class='hiddenRow'>
+    <td colspan='2' class='none'><div class='testcase'>testAddAddress</div></td>
+    <td colspan='7' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt28.1')" >
+        pass</a>
+
+    <div id='div_pt28.1' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt28.1').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt28.1: 
+请求地址：http://api.shein.com/v2/order/order/editOrderAddress
+
+请求返回值：
+{
+    "code": "400306",
+    "info": null,
+    "msg": "lname not less than 2."
+}
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr class='passClass '>
+    <td>paramunittest.EditOrderAddress_22</td>
+    <td>西班牙lname大于40字符</td>
+    <td>1</td>
+    <td>1</td>
+    <td>0</td>
+    <td>0</td>
+    <td><a href="javascript:showClassDetail('c29',1)">查看详细</a></td>
+</tr>
+
+<tr id='pt29.1' class='hiddenRow'>
+    <td colspan='2' class='none'><div class='testcase'>testAddAddress</div></td>
+    <td colspan='7' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt29.1')" >
+        pass</a>
+
+    <div id='div_pt29.1' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt29.1').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt29.1: 
+请求地址：http://api.shein.com/v2/order/order/editOrderAddress
+
+请求返回值：
+{
+    "code": "400341",
+    "info": null,
+    "msg": "Lname over 40"
+}
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr class='passClass '>
+    <td>paramunittest.EditOrderAddress_23</td>
+    <td>西班牙city小于2字符</td>
+    <td>1</td>
+    <td>1</td>
+    <td>0</td>
+    <td>0</td>
+    <td><a href="javascript:showClassDetail('c30',1)">查看详细</a></td>
+</tr>
+
+<tr id='pt30.1' class='hiddenRow'>
+    <td colspan='2' class='none'><div class='testcase'>testAddAddress</div></td>
+    <td colspan='7' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt30.1')" >
+        pass</a>
+
+    <div id='div_pt30.1' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt30.1').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt30.1: 
+请求地址：http://api.shein.com/v2/order/order/editOrderAddress
+
+请求返回值：
+{
+    "code": "400309",
+    "info": null,
+    "msg": "city not less than 2."
+}
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr class='passClass '>
+    <td>paramunittest.EditOrderAddress_24</td>
+    <td>西班牙city大于40字符</td>
+    <td>1</td>
+    <td>1</td>
+    <td>0</td>
+    <td>0</td>
+    <td><a href="javascript:showClassDetail('c31',1)">查看详细</a></td>
+</tr>
+
+<tr id='pt31.1' class='hiddenRow'>
+    <td colspan='2' class='none'><div class='testcase'>testAddAddress</div></td>
+    <td colspan='7' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt31.1')" >
+        pass</a>
+
+    <div id='div_pt31.1' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt31.1').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt31.1: 
+请求地址：http://api.shein.com/v2/order/order/editOrderAddress
+
+请求返回值：
+{
+    "code": "400349",
+    "info": null,
+    "msg": "City over 40"
+}
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr class='passClass '>
+    <td>paramunittest.EditOrderAddress_25</td>
+    <td>西班牙city为纯数字</td>
+    <td>1</td>
+    <td>1</td>
+    <td>0</td>
+    <td>0</td>
+    <td><a href="javascript:showClassDetail('c32',1)">查看详细</a></td>
+</tr>
+
+<tr id='pt32.1' class='hiddenRow'>
+    <td colspan='2' class='none'><div class='testcase'>testAddAddress</div></td>
+    <td colspan='7' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt32.1')" >
+        pass</a>
+
+    <div id='div_pt32.1' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt32.1').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt32.1: 
+请求地址：http://api.shein.com/v2/order/order/editOrderAddress
+
+请求返回值：
+{
+    "code": "400350",
+    "info": null,
+    "msg": "City is numeric"
+}
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr class='passClass '>
+    <td>paramunittest.EditOrderAddress_26</td>
+    <td>西班牙地址1小于5字符</td>
+    <td>1</td>
+    <td>1</td>
+    <td>0</td>
+    <td>0</td>
+    <td><a href="javascript:showClassDetail('c33',1)">查看详细</a></td>
+</tr>
+
+<tr id='pt33.1' class='hiddenRow'>
+    <td colspan='2' class='none'><div class='testcase'>testAddAddress</div></td>
+    <td colspan='7' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt33.1')" >
+        pass</a>
+
+    <div id='div_pt33.1' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt33.1').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt33.1: 
+请求地址：http://api.shein.com/v2/order/order/editOrderAddress
+
+请求返回值：
+{
+    "code": "400307",
+    "info": null,
+    "msg": "address error."
+}
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr class='passClass '>
+    <td>paramunittest.EditOrderAddress_27</td>
+    <td>西班牙地址1大于40字符</td>
+    <td>1</td>
+    <td>1</td>
+    <td>0</td>
+    <td>0</td>
+    <td><a href="javascript:showClassDetail('c34',1)">查看详细</a></td>
+</tr>
+
+<tr id='pt34.1' class='hiddenRow'>
+    <td colspan='2' class='none'><div class='testcase'>testAddAddress</div></td>
+    <td colspan='7' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt34.1')" >
+        pass</a>
+
+    <div id='div_pt34.1' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt34.1').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt34.1: 
+请求地址：http://api.shein.com/v2/order/order/editOrderAddress
+
+请求返回值：
+{
+    "code": "400351",
+    "info": null,
+    "msg": "Address1 over 40"
+}
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr class='passClass '>
+    <td>paramunittest.EditOrderAddress_28</td>
+    <td>西班牙地址1含有@符号</td>
+    <td>1</td>
+    <td>1</td>
+    <td>0</td>
+    <td>0</td>
+    <td><a href="javascript:showClassDetail('c35',1)">查看详细</a></td>
+</tr>
+
+<tr id='pt35.1' class='hiddenRow'>
+    <td colspan='2' class='none'><div class='testcase'>testAddAddress</div></td>
+    <td colspan='7' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt35.1')" >
+        pass</a>
+
+    <div id='div_pt35.1' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt35.1').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt35.1: 
+请求地址：http://api.shein.com/v2/order/order/editOrderAddress
+
+请求返回值：
+{
+    "code": "400344",
+    "info": null,
+    "msg": "Address1 contain @"
+}
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr class='passClass '>
+    <td>paramunittest.EditOrderAddress_29</td>
+    <td>西班牙地址1为纯数字</td>
+    <td>1</td>
+    <td>1</td>
+    <td>0</td>
+    <td>0</td>
+    <td><a href="javascript:showClassDetail('c36',1)">查看详细</a></td>
+</tr>
+
+<tr id='pt36.1' class='hiddenRow'>
+    <td colspan='2' class='none'><div class='testcase'>testAddAddress</div></td>
+    <td colspan='7' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt36.1')" >
+        pass</a>
+
+    <div id='div_pt36.1' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt36.1').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt36.1: 
+请求地址：http://api.shein.com/v2/order/order/editOrderAddress
+
+请求返回值：
+{
+    "code": "400343",
+    "info": null,
+    "msg": "Address1 is numeric"
+}
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr class='passClass '>
+    <td>paramunittest.EditOrderAddress_3</td>
+    <td>法国lname大于40字符</td>
+    <td>1</td>
+    <td>1</td>
+    <td>0</td>
+    <td>0</td>
+    <td><a href="javascript:showClassDetail('c37',1)">查看详细</a></td>
+</tr>
+
+<tr id='pt37.1' class='hiddenRow'>
+    <td colspan='2' class='none'><div class='testcase'>testAddAddress</div></td>
+    <td colspan='7' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt37.1')" >
+        pass</a>
+
+    <div id='div_pt37.1' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt37.1').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt37.1: 
+请求地址：http://api.shein.com/v2/order/order/editOrderAddress
+
+请求返回值：
+{
+    "code": "400341",
+    "info": null,
+    "msg": "Lname over 40"
+}
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr class='passClass '>
+    <td>paramunittest.EditOrderAddress_30</td>
+    <td>西班牙地址2含有@符号</td>
+    <td>1</td>
+    <td>1</td>
+    <td>0</td>
+    <td>0</td>
+    <td><a href="javascript:showClassDetail('c38',1)">查看详细</a></td>
+</tr>
+
+<tr id='pt38.1' class='hiddenRow'>
+    <td colspan='2' class='none'><div class='testcase'>testAddAddress</div></td>
+    <td colspan='7' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt38.1')" >
+        pass</a>
+
+    <div id='div_pt38.1' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt38.1').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt38.1: 
+请求地址：http://api.shein.com/v2/order/order/editOrderAddress
+
+请求返回值：
+{
+    "code": "400348",
+    "info": null,
+    "msg": "Address2 contain @"
+}
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr class='passClass '>
+    <td>paramunittest.EditOrderAddress_31</td>
+    <td>西班牙地址2为纯数字</td>
+    <td>1</td>
+    <td>1</td>
+    <td>0</td>
+    <td>0</td>
+    <td><a href="javascript:showClassDetail('c39',1)">查看详细</a></td>
+</tr>
+
+<tr id='pt39.1' class='hiddenRow'>
+    <td colspan='2' class='none'><div class='testcase'>testAddAddress</div></td>
+    <td colspan='7' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt39.1')" >
+        pass</a>
+
+    <div id='div_pt39.1' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt39.1').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt39.1: 
+请求地址：http://api.shein.com/v2/order/order/editOrderAddress
+
+请求返回值：
+{
+    "code": "400347",
+    "info": null,
+    "msg": "Address2 is numeric"
+}
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr class='passClass '>
+    <td>paramunittest.EditOrderAddress_32</td>
+    <td>西班牙地址2大于40字符</td>
+    <td>1</td>
+    <td>1</td>
+    <td>0</td>
+    <td>0</td>
+    <td><a href="javascript:showClassDetail('c40',1)">查看详细</a></td>
+</tr>
+
+<tr id='pt40.1' class='hiddenRow'>
+    <td colspan='2' class='none'><div class='testcase'>testAddAddress</div></td>
+    <td colspan='7' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt40.1')" >
+        pass</a>
+
+    <div id='div_pt40.1' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt40.1').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt40.1: 
+请求地址：http://api.shein.com/v2/order/order/editOrderAddress
+
+请求返回值：
+{
+    "code": "400352",
+    "info": null,
+    "msg": "Address2 over 40"
+}
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr class='passClass '>
+    <td>paramunittest.EditOrderAddress_33</td>
+    <td>西班牙tel小于5位数字</td>
+    <td>1</td>
+    <td>1</td>
+    <td>0</td>
+    <td>0</td>
+    <td><a href="javascript:showClassDetail('c41',1)">查看详细</a></td>
+</tr>
+
+<tr id='pt41.1' class='hiddenRow'>
+    <td colspan='2' class='none'><div class='testcase'>testAddAddress</div></td>
+    <td colspan='7' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt41.1')" >
+        pass</a>
+
+    <div id='div_pt41.1' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt41.1').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt41.1: 
+请求地址：http://api.shein.com/v2/order/order/editOrderAddress
+
+请求返回值：
+{
+    "code": "400311",
+    "info": null,
+    "msg": "tel number error."
+}
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr class='passClass '>
+    <td>paramunittest.EditOrderAddress_34</td>
+    <td>西班牙tel为非数字字符</td>
+    <td>1</td>
+    <td>1</td>
+    <td>0</td>
+    <td>0</td>
+    <td><a href="javascript:showClassDetail('c42',1)">查看详细</a></td>
+</tr>
+
+<tr id='pt42.1' class='hiddenRow'>
+    <td colspan='2' class='none'><div class='testcase'>testAddAddress</div></td>
+    <td colspan='7' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt42.1')" >
+        pass</a>
+
+    <div id='div_pt42.1' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt42.1').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt42.1: 
+请求地址：http://api.shein.com/v2/order/order/editOrderAddress
+
+请求返回值：
+{
+    "code": "400311",
+    "info": null,
+    "msg": "tel number error."
+}
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr class='passClass '>
+    <td>paramunittest.EditOrderAddress_35</td>
+    <td>西班牙tel大于13位数字</td>
+    <td>1</td>
+    <td>1</td>
+    <td>0</td>
+    <td>0</td>
+    <td><a href="javascript:showClassDetail('c43',1)">查看详细</a></td>
+</tr>
+
+<tr id='pt43.1' class='hiddenRow'>
+    <td colspan='2' class='none'><div class='testcase'>testAddAddress</div></td>
+    <td colspan='7' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt43.1')" >
+        pass</a>
+
+    <div id='div_pt43.1' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt43.1').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt43.1: 
+请求地址：http://api.shein.com/v2/order/order/editOrderAddress
+
+请求返回值：
+{
+    "code": "400311",
+    "info": null,
+    "msg": "tel number error."
+}
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr class='passClass '>
+    <td>paramunittest.EditOrderAddress_36</td>
+    <td>西班牙postcode非5位纯数字</td>
+    <td>1</td>
+    <td>1</td>
+    <td>0</td>
+    <td>0</td>
+    <td><a href="javascript:showClassDetail('c44',1)">查看详细</a></td>
+</tr>
+
+<tr id='pt44.1' class='hiddenRow'>
+    <td colspan='2' class='none'><div class='testcase'>testAddAddress</div></td>
+    <td colspan='7' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt44.1')" >
+        pass</a>
+
+    <div id='div_pt44.1' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt44.1').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt44.1: 
+请求地址：http://api.shein.com/v2/order/order/editOrderAddress
+
+请求返回值：
+{
+    "code": "400323",
+    "info": null,
+    "msg": "Postcode is invalid"
+}
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr class='passClass '>
+    <td>paramunittest.EditOrderAddress_37</td>
+    <td>西班牙正常编辑地址</td>
+    <td>1</td>
+    <td>1</td>
+    <td>0</td>
+    <td>0</td>
+    <td><a href="javascript:showClassDetail('c45',1)">查看详细</a></td>
+</tr>
+
+<tr id='pt45.1' class='hiddenRow'>
+    <td colspan='2' class='none'><div class='testcase'>testAddAddress</div></td>
+    <td colspan='7' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt45.1')" >
+        pass</a>
+
+    <div id='div_pt45.1' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt45.1').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt45.1: 
+请求地址：http://api.shein.com/v2/order/order/editOrderAddress
+
+请求返回值：
+{
+    "code": "0",
+    "info": {
+        "code": 1,
+        "description": "",
+        "enabled": 0,
+        "exceptionKey": "SelectedCountryNotSupportCODPaymentMethod",
+        "is_display": 1,
+        "useCod": 1
+    },
+    "msg": "ok"
+}
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr class='passClass '>
+    <td>paramunittest.EditOrderAddress_38</td>
+    <td>英国fname小于2字符</td>
+    <td>1</td>
+    <td>1</td>
+    <td>0</td>
+    <td>0</td>
+    <td><a href="javascript:showClassDetail('c46',1)">查看详细</a></td>
+</tr>
+
+<tr id='pt46.1' class='hiddenRow'>
+    <td colspan='2' class='none'><div class='testcase'>testAddAddress</div></td>
+    <td colspan='7' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt46.1')" >
+        pass</a>
+
+    <div id='div_pt46.1' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt46.1').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt46.1: 
+请求地址：http://api.shein.com/v2/order/order/editOrderAddress
+
+请求返回值：
+{
+    "code": "400305",
+    "info": null,
+    "msg": "fname not less than 2."
+}
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr class='passClass '>
+    <td>paramunittest.EditOrderAddress_39</td>
+    <td>英国fname大于40字符</td>
+    <td>1</td>
+    <td>1</td>
+    <td>0</td>
+    <td>0</td>
+    <td><a href="javascript:showClassDetail('c47',1)">查看详细</a></td>
+</tr>
+
+<tr id='pt47.1' class='hiddenRow'>
+    <td colspan='2' class='none'><div class='testcase'>testAddAddress</div></td>
+    <td colspan='7' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt47.1')" >
+        pass</a>
+
+    <div id='div_pt47.1' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt47.1').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt47.1: 
+请求地址：http://api.shein.com/v2/order/order/editOrderAddress
+
+请求返回值：
+{
+    "code": "400340",
+    "info": null,
+    "msg": "Fname over 40"
+}
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr class='passClass '>
+    <td>paramunittest.EditOrderAddress_4</td>
+    <td>法国city小于2字符</td>
+    <td>1</td>
+    <td>1</td>
+    <td>0</td>
+    <td>0</td>
+    <td><a href="javascript:showClassDetail('c48',1)">查看详细</a></td>
+</tr>
+
+<tr id='pt48.1' class='hiddenRow'>
+    <td colspan='2' class='none'><div class='testcase'>testAddAddress</div></td>
+    <td colspan='7' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt48.1')" >
+        pass</a>
+
+    <div id='div_pt48.1' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt48.1').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt48.1: 
+请求地址：http://api.shein.com/v2/order/order/editOrderAddress
+
+请求返回值：
+{
+    "code": "400309",
+    "info": null,
+    "msg": "city not less than 2."
+}
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr class='passClass '>
+    <td>paramunittest.EditOrderAddress_40</td>
+    <td>英国fname含非法字符</td>
+    <td>1</td>
+    <td>1</td>
+    <td>0</td>
+    <td>0</td>
+    <td><a href="javascript:showClassDetail('c49',1)">查看详细</a></td>
+</tr>
+
+<tr id='pt49.1' class='hiddenRow'>
+    <td colspan='2' class='none'><div class='testcase'>testAddAddress</div></td>
+    <td colspan='7' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt49.1')" >
+        pass</a>
+
+    <div id='div_pt49.1' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt49.1').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt49.1: 
+请求地址：http://api.shein.com/v2/order/order/editOrderAddress
+
+请求返回值：
+{
+    "code": "400358",
+    "info": null,
+    "msg": "Fname contain unlegal character"
+}
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr class='passClass '>
+    <td>paramunittest.EditOrderAddress_41</td>
+    <td>英国lname小于2字符</td>
+    <td>1</td>
+    <td>1</td>
+    <td>0</td>
+    <td>0</td>
+    <td><a href="javascript:showClassDetail('c50',1)">查看详细</a></td>
+</tr>
+
+<tr id='pt50.1' class='hiddenRow'>
+    <td colspan='2' class='none'><div class='testcase'>testAddAddress</div></td>
+    <td colspan='7' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt50.1')" >
+        pass</a>
+
+    <div id='div_pt50.1' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt50.1').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt50.1: 
+请求地址：http://api.shein.com/v2/order/order/editOrderAddress
+
+请求返回值：
+{
+    "code": "400306",
+    "info": null,
+    "msg": "lname not less than 2."
+}
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr class='passClass '>
+    <td>paramunittest.EditOrderAddress_42</td>
+    <td>英国lname大于40字符</td>
+    <td>1</td>
+    <td>1</td>
+    <td>0</td>
+    <td>0</td>
+    <td><a href="javascript:showClassDetail('c51',1)">查看详细</a></td>
+</tr>
+
+<tr id='pt51.1' class='hiddenRow'>
+    <td colspan='2' class='none'><div class='testcase'>testAddAddress</div></td>
+    <td colspan='7' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt51.1')" >
+        pass</a>
+
+    <div id='div_pt51.1' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt51.1').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt51.1: 
+请求地址：http://api.shein.com/v2/order/order/editOrderAddress
+
+请求返回值：
+{
+    "code": "400341",
+    "info": null,
+    "msg": "Lname over 40"
+}
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr class='passClass '>
+    <td>paramunittest.EditOrderAddress_43</td>
+    <td>英国lname含非法字符</td>
+    <td>1</td>
+    <td>1</td>
+    <td>0</td>
+    <td>0</td>
+    <td><a href="javascript:showClassDetail('c52',1)">查看详细</a></td>
+</tr>
+
+<tr id='pt52.1' class='hiddenRow'>
+    <td colspan='2' class='none'><div class='testcase'>testAddAddress</div></td>
+    <td colspan='7' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt52.1')" >
+        pass</a>
+
+    <div id='div_pt52.1' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt52.1').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt52.1: 
+请求地址：http://api.shein.com/v2/order/order/editOrderAddress
+
+请求返回值：
+{
+    "code": "400359",
+    "info": null,
+    "msg": "Lname contain unlegal character"
+}
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr class='passClass '>
+    <td>paramunittest.EditOrderAddress_44</td>
+    <td>英国city小于2字符</td>
+    <td>1</td>
+    <td>1</td>
+    <td>0</td>
+    <td>0</td>
+    <td><a href="javascript:showClassDetail('c53',1)">查看详细</a></td>
+</tr>
+
+<tr id='pt53.1' class='hiddenRow'>
+    <td colspan='2' class='none'><div class='testcase'>testAddAddress</div></td>
+    <td colspan='7' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt53.1')" >
+        pass</a>
+
+    <div id='div_pt53.1' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt53.1').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt53.1: 
+请求地址：http://api.shein.com/v2/order/order/editOrderAddress
+
+请求返回值：
+{
+    "code": "400309",
+    "info": null,
+    "msg": "city not less than 2."
+}
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr class='passClass '>
+    <td>paramunittest.EditOrderAddress_45</td>
+    <td>英国city大于40字符</td>
+    <td>1</td>
+    <td>1</td>
+    <td>0</td>
+    <td>0</td>
+    <td><a href="javascript:showClassDetail('c54',1)">查看详细</a></td>
+</tr>
+
+<tr id='pt54.1' class='hiddenRow'>
+    <td colspan='2' class='none'><div class='testcase'>testAddAddress</div></td>
+    <td colspan='7' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt54.1')" >
+        pass</a>
+
+    <div id='div_pt54.1' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt54.1').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt54.1: 
+请求地址：http://api.shein.com/v2/order/order/editOrderAddress
+
+请求返回值：
+{
+    "code": "400349",
+    "info": null,
+    "msg": "City over 40"
+}
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr class='passClass '>
+    <td>paramunittest.EditOrderAddress_46</td>
+    <td>英国city为纯数字</td>
+    <td>1</td>
+    <td>1</td>
+    <td>0</td>
+    <td>0</td>
+    <td><a href="javascript:showClassDetail('c55',1)">查看详细</a></td>
+</tr>
+
+<tr id='pt55.1' class='hiddenRow'>
+    <td colspan='2' class='none'><div class='testcase'>testAddAddress</div></td>
+    <td colspan='7' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt55.1')" >
+        pass</a>
+
+    <div id='div_pt55.1' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt55.1').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt55.1: 
+请求地址：http://api.shein.com/v2/order/order/editOrderAddress
+
+请求返回值：
+{
+    "code": "400350",
+    "info": null,
+    "msg": "City is numeric"
+}
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr class='passClass '>
+    <td>paramunittest.EditOrderAddress_47</td>
+    <td>英国地址1小于5字符</td>
+    <td>1</td>
+    <td>1</td>
+    <td>0</td>
+    <td>0</td>
+    <td><a href="javascript:showClassDetail('c56',1)">查看详细</a></td>
+</tr>
+
+<tr id='pt56.1' class='hiddenRow'>
+    <td colspan='2' class='none'><div class='testcase'>testAddAddress</div></td>
+    <td colspan='7' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt56.1')" >
+        pass</a>
+
+    <div id='div_pt56.1' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt56.1').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt56.1: 
+请求地址：http://api.shein.com/v2/order/order/editOrderAddress
+
+请求返回值：
+{
+    "code": "400307",
+    "info": null,
+    "msg": "address error."
+}
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr class='passClass '>
+    <td>paramunittest.EditOrderAddress_48</td>
+    <td>英国地址1大于35字符</td>
+    <td>1</td>
+    <td>1</td>
+    <td>0</td>
+    <td>0</td>
+    <td><a href="javascript:showClassDetail('c57',1)">查看详细</a></td>
+</tr>
+
+<tr id='pt57.1' class='hiddenRow'>
+    <td colspan='2' class='none'><div class='testcase'>testAddAddress</div></td>
+    <td colspan='7' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt57.1')" >
+        pass</a>
+
+    <div id='div_pt57.1' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt57.1').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt57.1: 
+请求地址：http://api.shein.com/v2/order/order/editOrderAddress
+
+请求返回值：
+{
+    "code": "400353",
+    "info": null,
+    "msg": "Address1 over 35"
+}
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr class='passClass '>
+    <td>paramunittest.EditOrderAddress_49</td>
+    <td>英国地址1含非法字符</td>
+    <td>1</td>
+    <td>1</td>
+    <td>0</td>
+    <td>0</td>
+    <td><a href="javascript:showClassDetail('c58',1)">查看详细</a></td>
+</tr>
+
+<tr id='pt58.1' class='hiddenRow'>
+    <td colspan='2' class='none'><div class='testcase'>testAddAddress</div></td>
+    <td colspan='7' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt58.1')" >
+        pass</a>
+
+    <div id='div_pt58.1' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt58.1').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt58.1: 
+请求地址：http://api.shein.com/v2/order/order/editOrderAddress
+
+请求返回值：
+{
+    "code": "400360",
+    "info": null,
+    "msg": "Address1 contain unlegal character"
+}
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr class='passClass '>
+    <td>paramunittest.EditOrderAddress_5</td>
+    <td>法国city大于40字符</td>
+    <td>1</td>
+    <td>1</td>
+    <td>0</td>
+    <td>0</td>
+    <td><a href="javascript:showClassDetail('c59',1)">查看详细</a></td>
+</tr>
+
+<tr id='pt59.1' class='hiddenRow'>
+    <td colspan='2' class='none'><div class='testcase'>testAddAddress</div></td>
+    <td colspan='7' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt59.1')" >
+        pass</a>
+
+    <div id='div_pt59.1' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt59.1').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt59.1: 
+请求地址：http://api.shein.com/v2/order/order/editOrderAddress
+
+请求返回值：
+{
+    "code": "400349",
+    "info": null,
+    "msg": "City over 40"
+}
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr class='passClass '>
+    <td>paramunittest.EditOrderAddress_50</td>
+    <td>英国地址1为纯数字</td>
+    <td>1</td>
+    <td>1</td>
+    <td>0</td>
+    <td>0</td>
+    <td><a href="javascript:showClassDetail('c60',1)">查看详细</a></td>
+</tr>
+
+<tr id='pt60.1' class='hiddenRow'>
+    <td colspan='2' class='none'><div class='testcase'>testAddAddress</div></td>
+    <td colspan='7' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt60.1')" >
+        pass</a>
+
+    <div id='div_pt60.1' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt60.1').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt60.1: 
+请求地址：http://api.shein.com/v2/order/order/editOrderAddress
+
+请求返回值：
+{
+    "code": "400343",
+    "info": null,
+    "msg": "Address1 is numeric"
+}
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr class='passClass '>
+    <td>paramunittest.EditOrderAddress_51</td>
+    <td>英国地址2含非法字符</td>
+    <td>1</td>
+    <td>1</td>
+    <td>0</td>
+    <td>0</td>
+    <td><a href="javascript:showClassDetail('c61',1)">查看详细</a></td>
+</tr>
+
+<tr id='pt61.1' class='hiddenRow'>
+    <td colspan='2' class='none'><div class='testcase'>testAddAddress</div></td>
+    <td colspan='7' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt61.1')" >
+        pass</a>
+
+    <div id='div_pt61.1' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt61.1').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt61.1: 
+请求地址：http://api.shein.com/v2/order/order/editOrderAddress
+
+请求返回值：
+{
+    "code": "400361",
+    "info": null,
+    "msg": "Address2 contain unlegal character"
+}
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr class='passClass '>
+    <td>paramunittest.EditOrderAddress_52</td>
+    <td>英国地址2为纯数字</td>
+    <td>1</td>
+    <td>1</td>
+    <td>0</td>
+    <td>0</td>
+    <td><a href="javascript:showClassDetail('c62',1)">查看详细</a></td>
+</tr>
+
+<tr id='pt62.1' class='hiddenRow'>
+    <td colspan='2' class='none'><div class='testcase'>testAddAddress</div></td>
+    <td colspan='7' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt62.1')" >
+        pass</a>
+
+    <div id='div_pt62.1' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt62.1').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt62.1: 
+请求地址：http://api.shein.com/v2/order/order/editOrderAddress
+
+请求返回值：
+{
+    "code": "400347",
+    "info": null,
+    "msg": "Address2 is numeric"
+}
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr class='passClass '>
+    <td>paramunittest.EditOrderAddress_53</td>
+    <td>英国地址2大于35字符</td>
+    <td>1</td>
+    <td>1</td>
+    <td>0</td>
+    <td>0</td>
+    <td><a href="javascript:showClassDetail('c63',1)">查看详细</a></td>
+</tr>
+
+<tr id='pt63.1' class='hiddenRow'>
+    <td colspan='2' class='none'><div class='testcase'>testAddAddress</div></td>
+    <td colspan='7' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt63.1')" >
+        pass</a>
+
+    <div id='div_pt63.1' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt63.1').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt63.1: 
+请求地址：http://api.shein.com/v2/order/order/editOrderAddress
+
+请求返回值：
+{
+    "code": "400354",
+    "info": null,
+    "msg": "Address2 over 35"
+}
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr class='passClass '>
+    <td>paramunittest.EditOrderAddress_54</td>
+    <td>英国tel小于5位数字</td>
+    <td>1</td>
+    <td>1</td>
+    <td>0</td>
+    <td>0</td>
+    <td><a href="javascript:showClassDetail('c64',1)">查看详细</a></td>
+</tr>
+
+<tr id='pt64.1' class='hiddenRow'>
+    <td colspan='2' class='none'><div class='testcase'>testAddAddress</div></td>
+    <td colspan='7' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt64.1')" >
+        pass</a>
+
+    <div id='div_pt64.1' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt64.1').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt64.1: 
+请求地址：http://api.shein.com/v2/order/order/editOrderAddress
+
+请求返回值：
+{
+    "code": "400311",
+    "info": null,
+    "msg": "tel number error."
+}
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr class='passClass '>
+    <td>paramunittest.EditOrderAddress_55</td>
+    <td>英国tel为非数字字符</td>
+    <td>1</td>
+    <td>1</td>
+    <td>0</td>
+    <td>0</td>
+    <td><a href="javascript:showClassDetail('c65',1)">查看详细</a></td>
+</tr>
+
+<tr id='pt65.1' class='hiddenRow'>
+    <td colspan='2' class='none'><div class='testcase'>testAddAddress</div></td>
+    <td colspan='7' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt65.1')" >
+        pass</a>
+
+    <div id='div_pt65.1' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt65.1').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt65.1: 
+请求地址：http://api.shein.com/v2/order/order/editOrderAddress
+
+请求返回值：
+{
+    "code": "400311",
+    "info": null,
+    "msg": "tel number error."
+}
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr class='passClass '>
+    <td>paramunittest.EditOrderAddress_56</td>
+    <td>英国tel大于16位数字</td>
+    <td>1</td>
+    <td>1</td>
+    <td>0</td>
+    <td>0</td>
+    <td><a href="javascript:showClassDetail('c66',1)">查看详细</a></td>
+</tr>
+
+<tr id='pt66.1' class='hiddenRow'>
+    <td colspan='2' class='none'><div class='testcase'>testAddAddress</div></td>
+    <td colspan='7' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt66.1')" >
+        pass</a>
+
+    <div id='div_pt66.1' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt66.1').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt66.1: 
+请求地址：http://api.shein.com/v2/order/order/editOrderAddress
+
+请求返回值：
+{
+    "code": "400311",
+    "info": null,
+    "msg": "tel number error."
+}
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr class='passClass '>
+    <td>paramunittest.EditOrderAddress_57</td>
+    <td>英国postcode非正确格式</td>
+    <td>1</td>
+    <td>1</td>
+    <td>0</td>
+    <td>0</td>
+    <td><a href="javascript:showClassDetail('c67',1)">查看详细</a></td>
+</tr>
+
+<tr id='pt67.1' class='hiddenRow'>
+    <td colspan='2' class='none'><div class='testcase'>testAddAddress</div></td>
+    <td colspan='7' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt67.1')" >
+        pass</a>
+
+    <div id='div_pt67.1' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt67.1').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt67.1: 
+请求地址：http://api.shein.com/v2/order/order/editOrderAddress
+
+请求返回值：
+{
+    "code": "400323",
+    "info": null,
+    "msg": "Postcode is invalid"
+}
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr class='passClass '>
+    <td>paramunittest.EditOrderAddress_58</td>
+    <td>英国正常编辑地址</td>
+    <td>1</td>
+    <td>1</td>
+    <td>0</td>
+    <td>0</td>
+    <td><a href="javascript:showClassDetail('c68',1)">查看详细</a></td>
+</tr>
+
+<tr id='pt68.1' class='hiddenRow'>
+    <td colspan='2' class='none'><div class='testcase'>testAddAddress</div></td>
+    <td colspan='7' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt68.1')" >
+        pass</a>
+
+    <div id='div_pt68.1' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt68.1').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt68.1: 
+请求地址：http://api.shein.com/v2/order/order/editOrderAddress
+
+请求返回值：
+{
+    "code": "0",
+    "info": {
+        "code": 1,
+        "description": "",
+        "enabled": 0,
+        "exceptionKey": "SelectedCountryNotSupportCODPaymentMethod",
+        "is_display": 1,
+        "useCod": 1
+    },
+    "msg": "ok"
+}
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr class='passClass '>
+    <td>paramunittest.EditOrderAddress_59</td>
+    <td>意大利fname小于2字符</td>
+    <td>1</td>
+    <td>1</td>
+    <td>0</td>
+    <td>0</td>
+    <td><a href="javascript:showClassDetail('c69',1)">查看详细</a></td>
+</tr>
+
+<tr id='pt69.1' class='hiddenRow'>
+    <td colspan='2' class='none'><div class='testcase'>testAddAddress</div></td>
+    <td colspan='7' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt69.1')" >
+        pass</a>
+
+    <div id='div_pt69.1' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt69.1').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt69.1: 
+请求地址：http://api.shein.com/v2/order/order/editOrderAddress
+
+请求返回值：
+{
+    "code": "400305",
+    "info": null,
+    "msg": "fname not less than 2."
+}
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr class='passClass '>
+    <td>paramunittest.EditOrderAddress_6</td>
+    <td>法国city为纯数字</td>
+    <td>1</td>
+    <td>1</td>
+    <td>0</td>
+    <td>0</td>
+    <td><a href="javascript:showClassDetail('c70',1)">查看详细</a></td>
+</tr>
+
+<tr id='pt70.1' class='hiddenRow'>
+    <td colspan='2' class='none'><div class='testcase'>testAddAddress</div></td>
+    <td colspan='7' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt70.1')" >
+        pass</a>
+
+    <div id='div_pt70.1' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt70.1').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt70.1: 
+请求地址：http://api.shein.com/v2/order/order/editOrderAddress
+
+请求返回值：
+{
+    "code": "400350",
+    "info": null,
+    "msg": "City is numeric"
+}
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr class='passClass '>
+    <td>paramunittest.EditOrderAddress_60</td>
+    <td>意大利fname大于40字符</td>
+    <td>1</td>
+    <td>1</td>
+    <td>0</td>
+    <td>0</td>
+    <td><a href="javascript:showClassDetail('c71',1)">查看详细</a></td>
+</tr>
+
+<tr id='pt71.1' class='hiddenRow'>
+    <td colspan='2' class='none'><div class='testcase'>testAddAddress</div></td>
+    <td colspan='7' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt71.1')" >
+        pass</a>
+
+    <div id='div_pt71.1' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt71.1').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt71.1: 
+请求地址：http://api.shein.com/v2/order/order/editOrderAddress
+
+请求返回值：
+{
+    "code": "400340",
+    "info": null,
+    "msg": "Fname over 40"
+}
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr class='passClass '>
+    <td>paramunittest.EditOrderAddress_61</td>
+    <td>意大利lname小于2字符</td>
+    <td>1</td>
+    <td>1</td>
+    <td>0</td>
+    <td>0</td>
+    <td><a href="javascript:showClassDetail('c72',1)">查看详细</a></td>
+</tr>
+
+<tr id='pt72.1' class='hiddenRow'>
+    <td colspan='2' class='none'><div class='testcase'>testAddAddress</div></td>
+    <td colspan='7' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt72.1')" >
+        pass</a>
+
+    <div id='div_pt72.1' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt72.1').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt72.1: 
+请求地址：http://api.shein.com/v2/order/order/editOrderAddress
+
+请求返回值：
+{
+    "code": "400306",
+    "info": null,
+    "msg": "lname not less than 2."
+}
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr class='passClass '>
+    <td>paramunittest.EditOrderAddress_62</td>
+    <td>意大利lname大于40字符</td>
+    <td>1</td>
+    <td>1</td>
+    <td>0</td>
+    <td>0</td>
+    <td><a href="javascript:showClassDetail('c73',1)">查看详细</a></td>
+</tr>
+
+<tr id='pt73.1' class='hiddenRow'>
+    <td colspan='2' class='none'><div class='testcase'>testAddAddress</div></td>
+    <td colspan='7' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt73.1')" >
+        pass</a>
+
+    <div id='div_pt73.1' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt73.1').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt73.1: 
+请求地址：http://api.shein.com/v2/order/order/editOrderAddress
+
+请求返回值：
+{
+    "code": "400341",
+    "info": null,
+    "msg": "Lname over 40"
+}
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr class='passClass '>
+    <td>paramunittest.EditOrderAddress_63</td>
+    <td>意大利city小于2字符</td>
+    <td>1</td>
+    <td>1</td>
+    <td>0</td>
+    <td>0</td>
+    <td><a href="javascript:showClassDetail('c74',1)">查看详细</a></td>
+</tr>
+
+<tr id='pt74.1' class='hiddenRow'>
+    <td colspan='2' class='none'><div class='testcase'>testAddAddress</div></td>
+    <td colspan='7' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt74.1')" >
+        pass</a>
+
+    <div id='div_pt74.1' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt74.1').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt74.1: 
+请求地址：http://api.shein.com/v2/order/order/editOrderAddress
+
+请求返回值：
+{
+    "code": "400309",
+    "info": null,
+    "msg": "city not less than 2."
+}
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr class='passClass '>
+    <td>paramunittest.EditOrderAddress_64</td>
+    <td>意大利city大于40字符</td>
+    <td>1</td>
+    <td>1</td>
+    <td>0</td>
+    <td>0</td>
+    <td><a href="javascript:showClassDetail('c75',1)">查看详细</a></td>
+</tr>
+
+<tr id='pt75.1' class='hiddenRow'>
+    <td colspan='2' class='none'><div class='testcase'>testAddAddress</div></td>
+    <td colspan='7' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt75.1')" >
+        pass</a>
+
+    <div id='div_pt75.1' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt75.1').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt75.1: 
+请求地址：http://api.shein.com/v2/order/order/editOrderAddress
+
+请求返回值：
+{
+    "code": "400349",
+    "info": null,
+    "msg": "City over 40"
+}
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr class='passClass '>
+    <td>paramunittest.EditOrderAddress_65</td>
+    <td>意大利city为纯数字</td>
+    <td>1</td>
+    <td>1</td>
+    <td>0</td>
+    <td>0</td>
+    <td><a href="javascript:showClassDetail('c76',1)">查看详细</a></td>
+</tr>
+
+<tr id='pt76.1' class='hiddenRow'>
+    <td colspan='2' class='none'><div class='testcase'>testAddAddress</div></td>
+    <td colspan='7' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt76.1')" >
+        pass</a>
+
+    <div id='div_pt76.1' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt76.1').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt76.1: 
+请求地址：http://api.shein.com/v2/order/order/editOrderAddress
+
+请求返回值：
+{
+    "code": "400350",
+    "info": null,
+    "msg": "City is numeric"
+}
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr class='passClass '>
+    <td>paramunittest.EditOrderAddress_66</td>
+    <td>意大利地址1小于5字符</td>
+    <td>1</td>
+    <td>1</td>
+    <td>0</td>
+    <td>0</td>
+    <td><a href="javascript:showClassDetail('c77',1)">查看详细</a></td>
+</tr>
+
+<tr id='pt77.1' class='hiddenRow'>
+    <td colspan='2' class='none'><div class='testcase'>testAddAddress</div></td>
+    <td colspan='7' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt77.1')" >
+        pass</a>
+
+    <div id='div_pt77.1' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt77.1').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt77.1: 
+请求地址：http://api.shein.com/v2/order/order/editOrderAddress
+
+请求返回值：
+{
+    "code": "400307",
+    "info": null,
+    "msg": "address error."
+}
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr class='passClass '>
+    <td>paramunittest.EditOrderAddress_67</td>
+    <td>意大利地址1大于40字符</td>
+    <td>1</td>
+    <td>1</td>
+    <td>0</td>
+    <td>0</td>
+    <td><a href="javascript:showClassDetail('c78',1)">查看详细</a></td>
+</tr>
+
+<tr id='pt78.1' class='hiddenRow'>
+    <td colspan='2' class='none'><div class='testcase'>testAddAddress</div></td>
+    <td colspan='7' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt78.1')" >
+        pass</a>
+
+    <div id='div_pt78.1' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt78.1').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt78.1: 
+请求地址：http://api.shein.com/v2/order/order/editOrderAddress
+
+请求返回值：
+{
+    "code": "400351",
+    "info": null,
+    "msg": "Address1 over 40"
+}
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr class='passClass '>
+    <td>paramunittest.EditOrderAddress_68</td>
+    <td>意大利地址1含有@符号</td>
+    <td>1</td>
+    <td>1</td>
+    <td>0</td>
+    <td>0</td>
+    <td><a href="javascript:showClassDetail('c79',1)">查看详细</a></td>
+</tr>
+
+<tr id='pt79.1' class='hiddenRow'>
+    <td colspan='2' class='none'><div class='testcase'>testAddAddress</div></td>
+    <td colspan='7' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt79.1')" >
+        pass</a>
+
+    <div id='div_pt79.1' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt79.1').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt79.1: 
+请求地址：http://api.shein.com/v2/order/order/editOrderAddress
+
+请求返回值：
+{
+    "code": "400344",
+    "info": null,
+    "msg": "Address1 contain @"
+}
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr class='passClass '>
+    <td>paramunittest.EditOrderAddress_69</td>
+    <td>意大利地址1为纯数字</td>
+    <td>1</td>
+    <td>1</td>
+    <td>0</td>
+    <td>0</td>
+    <td><a href="javascript:showClassDetail('c80',1)">查看详细</a></td>
+</tr>
+
+<tr id='pt80.1' class='hiddenRow'>
+    <td colspan='2' class='none'><div class='testcase'>testAddAddress</div></td>
+    <td colspan='7' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt80.1')" >
+        pass</a>
+
+    <div id='div_pt80.1' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt80.1').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt80.1: 
+请求地址：http://api.shein.com/v2/order/order/editOrderAddress
+
+请求返回值：
+{
+    "code": "400343",
+    "info": null,
+    "msg": "Address1 is numeric"
+}
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr class='passClass '>
+    <td>paramunittest.EditOrderAddress_7</td>
+    <td>法国地址1小于5字符</td>
+    <td>1</td>
+    <td>1</td>
+    <td>0</td>
+    <td>0</td>
+    <td><a href="javascript:showClassDetail('c81',1)">查看详细</a></td>
+</tr>
+
+<tr id='pt81.1' class='hiddenRow'>
+    <td colspan='2' class='none'><div class='testcase'>testAddAddress</div></td>
+    <td colspan='7' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt81.1')" >
+        pass</a>
+
+    <div id='div_pt81.1' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt81.1').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt81.1: 
+请求地址：http://api.shein.com/v2/order/order/editOrderAddress
+
+请求返回值：
+{
+    "code": "400307",
+    "info": null,
+    "msg": "address error."
+}
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr class='passClass '>
+    <td>paramunittest.EditOrderAddress_70</td>
+    <td>意大利地址2含有@符号</td>
+    <td>1</td>
+    <td>1</td>
+    <td>0</td>
+    <td>0</td>
+    <td><a href="javascript:showClassDetail('c82',1)">查看详细</a></td>
+</tr>
+
+<tr id='pt82.1' class='hiddenRow'>
+    <td colspan='2' class='none'><div class='testcase'>testAddAddress</div></td>
+    <td colspan='7' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt82.1')" >
+        pass</a>
+
+    <div id='div_pt82.1' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt82.1').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt82.1: 
+请求地址：http://api.shein.com/v2/order/order/editOrderAddress
+
+请求返回值：
+{
+    "code": "400348",
+    "info": null,
+    "msg": "Address2 contain @"
+}
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr class='passClass '>
+    <td>paramunittest.EditOrderAddress_71</td>
+    <td>意大利地址2为纯数字</td>
+    <td>1</td>
+    <td>1</td>
+    <td>0</td>
+    <td>0</td>
+    <td><a href="javascript:showClassDetail('c83',1)">查看详细</a></td>
+</tr>
+
+<tr id='pt83.1' class='hiddenRow'>
+    <td colspan='2' class='none'><div class='testcase'>testAddAddress</div></td>
+    <td colspan='7' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt83.1')" >
+        pass</a>
+
+    <div id='div_pt83.1' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt83.1').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt83.1: 
+请求地址：http://api.shein.com/v2/order/order/editOrderAddress
+
+请求返回值：
+{
+    "code": "400347",
+    "info": null,
+    "msg": "Address2 is numeric"
+}
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr class='passClass '>
+    <td>paramunittest.EditOrderAddress_72</td>
+    <td>意大利地址2大于40字符</td>
+    <td>1</td>
+    <td>1</td>
+    <td>0</td>
+    <td>0</td>
+    <td><a href="javascript:showClassDetail('c84',1)">查看详细</a></td>
+</tr>
+
+<tr id='pt84.1' class='hiddenRow'>
+    <td colspan='2' class='none'><div class='testcase'>testAddAddress</div></td>
+    <td colspan='7' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt84.1')" >
+        pass</a>
+
+    <div id='div_pt84.1' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt84.1').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt84.1: 
+请求地址：http://api.shein.com/v2/order/order/editOrderAddress
+
+请求返回值：
+{
+    "code": "400352",
+    "info": null,
+    "msg": "Address2 over 40"
+}
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr class='passClass '>
+    <td>paramunittest.EditOrderAddress_73</td>
+    <td>意大利tel小于5位数字</td>
+    <td>1</td>
+    <td>1</td>
+    <td>0</td>
+    <td>0</td>
+    <td><a href="javascript:showClassDetail('c85',1)">查看详细</a></td>
+</tr>
+
+<tr id='pt85.1' class='hiddenRow'>
+    <td colspan='2' class='none'><div class='testcase'>testAddAddress</div></td>
+    <td colspan='7' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt85.1')" >
+        pass</a>
+
+    <div id='div_pt85.1' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt85.1').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt85.1: 
+请求地址：http://api.shein.com/v2/order/order/editOrderAddress
+
+请求返回值：
+{
+    "code": "400311",
+    "info": null,
+    "msg": "tel number error."
+}
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr class='passClass '>
+    <td>paramunittest.EditOrderAddress_74</td>
+    <td>意大利tel为非数字字符</td>
+    <td>1</td>
+    <td>1</td>
+    <td>0</td>
+    <td>0</td>
+    <td><a href="javascript:showClassDetail('c86',1)">查看详细</a></td>
+</tr>
+
+<tr id='pt86.1' class='hiddenRow'>
+    <td colspan='2' class='none'><div class='testcase'>testAddAddress</div></td>
+    <td colspan='7' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt86.1')" >
+        pass</a>
+
+    <div id='div_pt86.1' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt86.1').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt86.1: 
+请求地址：http://api.shein.com/v2/order/order/editOrderAddress
+
+请求返回值：
+{
+    "code": "400311",
+    "info": null,
+    "msg": "tel number error."
+}
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr class='passClass '>
+    <td>paramunittest.EditOrderAddress_75</td>
+    <td>意大利postcode非正确格式</td>
+    <td>1</td>
+    <td>1</td>
+    <td>0</td>
+    <td>0</td>
+    <td><a href="javascript:showClassDetail('c87',1)">查看详细</a></td>
+</tr>
+
+<tr id='pt87.1' class='hiddenRow'>
+    <td colspan='2' class='none'><div class='testcase'>testAddAddress</div></td>
+    <td colspan='7' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt87.1')" >
+        pass</a>
+
+    <div id='div_pt87.1' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt87.1').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt87.1: 
+请求地址：http://api.shein.com/v2/order/order/editOrderAddress
+
+请求返回值：
+{
+    "code": "400323",
+    "info": null,
+    "msg": "Postcode is invalid"
+}
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr class='passClass '>
+    <td>paramunittest.EditOrderAddress_76</td>
+    <td>意大利state为空</td>
+    <td>1</td>
+    <td>1</td>
+    <td>0</td>
+    <td>0</td>
+    <td><a href="javascript:showClassDetail('c88',1)">查看详细</a></td>
+</tr>
+
+<tr id='pt88.1' class='hiddenRow'>
+    <td colspan='2' class='none'><div class='testcase'>testAddAddress</div></td>
+    <td colspan='7' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt88.1')" >
+        pass</a>
+
+    <div id='div_pt88.1' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt88.1').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt88.1: 
+请求地址：http://api.shein.com/v2/order/order/editOrderAddress
+
+请求返回值：
+{
+    "code": "400317",
+    "info": null,
+    "msg": "state can't be empty."
+}
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr class='passClass '>
+    <td>paramunittest.EditOrderAddress_77</td>
+    <td>意大利正常编辑地址</td>
+    <td>1</td>
+    <td>1</td>
+    <td>0</td>
+    <td>0</td>
+    <td><a href="javascript:showClassDetail('c89',1)">查看详细</a></td>
+</tr>
+
+<tr id='pt89.1' class='hiddenRow'>
+    <td colspan='2' class='none'><div class='testcase'>testAddAddress</div></td>
+    <td colspan='7' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt89.1')" >
+        pass</a>
+
+    <div id='div_pt89.1' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt89.1').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt89.1: 
+请求地址：http://api.shein.com/v2/order/order/editOrderAddress
+
+请求返回值：
+{
+    "code": "0",
+    "info": {
+        "code": 1,
+        "description": "",
+        "enabled": 0,
+        "exceptionKey": "SelectedCountryNotSupportCODPaymentMethod",
+        "is_display": 1,
+        "useCod": 1
+    },
+    "msg": "ok"
+}
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr class='passClass '>
+    <td>paramunittest.EditOrderAddress_78</td>
+    <td>加拿大fname小于4字符</td>
+    <td>1</td>
+    <td>1</td>
+    <td>0</td>
+    <td>0</td>
+    <td><a href="javascript:showClassDetail('c90',1)">查看详细</a></td>
+</tr>
+
+<tr id='pt90.1' class='hiddenRow'>
+    <td colspan='2' class='none'><div class='testcase'>testAddAddress</div></td>
+    <td colspan='7' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt90.1')" >
+        pass</a>
+
+    <div id='div_pt90.1' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt90.1').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt90.1: 
+请求地址：http://api.shein.com/v2/order/order/editOrderAddress
+
+请求返回值：
+{
+    "code": "400305",
+    "info": null,
+    "msg": "fname not less than 2."
+}
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr class='passClass '>
+    <td>paramunittest.EditOrderAddress_79</td>
+    <td>加拿大fname大于35字符</td>
+    <td>1</td>
+    <td>1</td>
+    <td>0</td>
+    <td>0</td>
+    <td><a href="javascript:showClassDetail('c91',1)">查看详细</a></td>
+</tr>
+
+<tr id='pt91.1' class='hiddenRow'>
+    <td colspan='2' class='none'><div class='testcase'>testAddAddress</div></td>
+    <td colspan='7' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt91.1')" >
+        pass</a>
+
+    <div id='div_pt91.1' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt91.1').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt91.1: 
+请求地址：http://api.shein.com/v2/order/order/editOrderAddress
+
+请求返回值：
+{
+    "code": "400305",
+    "info": null,
+    "msg": "fname not less than 2."
+}
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr class='passClass '>
+    <td>paramunittest.EditOrderAddress_8</td>
+    <td>法国地址1大于90字符</td>
+    <td>1</td>
+    <td>1</td>
+    <td>0</td>
+    <td>0</td>
+    <td><a href="javascript:showClassDetail('c92',1)">查看详细</a></td>
+</tr>
+
+<tr id='pt92.1' class='hiddenRow'>
+    <td colspan='2' class='none'><div class='testcase'>testAddAddress</div></td>
+    <td colspan='7' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt92.1')" >
+        pass</a>
+
+    <div id='div_pt92.1' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt92.1').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt92.1: 
+请求地址：http://api.shein.com/v2/order/order/editOrderAddress
+
+请求返回值：
+{
+    "code": "400342",
+    "info": null,
+    "msg": "Address1 over 90"
+}
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr class='passClass '>
+    <td>paramunittest.EditOrderAddress_80</td>
+    <td>加拿大city小于2字符</td>
+    <td>1</td>
+    <td>1</td>
+    <td>0</td>
+    <td>0</td>
+    <td><a href="javascript:showClassDetail('c93',1)">查看详细</a></td>
+</tr>
+
+<tr id='pt93.1' class='hiddenRow'>
+    <td colspan='2' class='none'><div class='testcase'>testAddAddress</div></td>
+    <td colspan='7' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt93.1')" >
+        pass</a>
+
+    <div id='div_pt93.1' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt93.1').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt93.1: 
+请求地址：http://api.shein.com/v2/order/order/editOrderAddress
+
+请求返回值：
+{
+    "code": "400309",
+    "info": null,
+    "msg": "city not less than 2."
+}
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr class='passClass '>
+    <td>paramunittest.EditOrderAddress_81</td>
+    <td>加拿大city大于35字符</td>
+    <td>1</td>
+    <td>1</td>
+    <td>0</td>
+    <td>0</td>
+    <td><a href="javascript:showClassDetail('c94',1)">查看详细</a></td>
+</tr>
+
+<tr id='pt94.1' class='hiddenRow'>
+    <td colspan='2' class='none'><div class='testcase'>testAddAddress</div></td>
+    <td colspan='7' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt94.1')" >
+        pass</a>
+
+    <div id='div_pt94.1' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt94.1').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt94.1: 
+请求地址：http://api.shein.com/v2/order/order/editOrderAddress
+
+请求返回值：
+{
+    "code": "400309",
+    "info": null,
+    "msg": "city not less than 2."
+}
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr class='passClass '>
+    <td>paramunittest.EditOrderAddress_82</td>
+    <td>加拿大city为纯数字</td>
+    <td>1</td>
+    <td>1</td>
+    <td>0</td>
+    <td>0</td>
+    <td><a href="javascript:showClassDetail('c95',1)">查看详细</a></td>
+</tr>
+
+<tr id='pt95.1' class='hiddenRow'>
+    <td colspan='2' class='none'><div class='testcase'>testAddAddress</div></td>
+    <td colspan='7' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt95.1')" >
+        pass</a>
+
+    <div id='div_pt95.1' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt95.1').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt95.1: 
+请求地址：http://api.shein.com/v2/order/order/editOrderAddress
+
+请求返回值：
+{
+    "code": "400350",
+    "info": null,
+    "msg": "City is numeric"
+}
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr class='passClass '>
+    <td>paramunittest.EditOrderAddress_83</td>
+    <td>加拿大地址1小于5字符</td>
+    <td>1</td>
+    <td>1</td>
+    <td>0</td>
+    <td>0</td>
+    <td><a href="javascript:showClassDetail('c96',1)">查看详细</a></td>
+</tr>
+
+<tr id='pt96.1' class='hiddenRow'>
+    <td colspan='2' class='none'><div class='testcase'>testAddAddress</div></td>
+    <td colspan='7' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt96.1')" >
+        pass</a>
+
+    <div id='div_pt96.1' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt96.1').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt96.1: 
+请求地址：http://api.shein.com/v2/order/order/editOrderAddress
+
+请求返回值：
+{
+    "code": "400307",
+    "info": null,
+    "msg": "address error."
+}
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr class='passClass '>
+    <td>paramunittest.EditOrderAddress_84</td>
+    <td>加拿大地址1大于35字符</td>
+    <td>1</td>
+    <td>1</td>
+    <td>0</td>
+    <td>0</td>
+    <td><a href="javascript:showClassDetail('c97',1)">查看详细</a></td>
+</tr>
+
+<tr id='pt97.1' class='hiddenRow'>
+    <td colspan='2' class='none'><div class='testcase'>testAddAddress</div></td>
+    <td colspan='7' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt97.1')" >
+        pass</a>
+
+    <div id='div_pt97.1' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt97.1').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt97.1: 
+请求地址：http://api.shein.com/v2/order/order/editOrderAddress
+
+请求返回值：
+{
+    "code": "400307",
+    "info": null,
+    "msg": "address error."
+}
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr class='passClass '>
+    <td>paramunittest.EditOrderAddress_85</td>
+    <td>加拿大地址1为纯数字</td>
+    <td>1</td>
+    <td>1</td>
+    <td>0</td>
+    <td>0</td>
+    <td><a href="javascript:showClassDetail('c98',1)">查看详细</a></td>
+</tr>
+
+<tr id='pt98.1' class='hiddenRow'>
+    <td colspan='2' class='none'><div class='testcase'>testAddAddress</div></td>
+    <td colspan='7' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt98.1')" >
+        pass</a>
+
+    <div id='div_pt98.1' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt98.1').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt98.1: 
+请求地址：http://api.shein.com/v2/order/order/editOrderAddress
+
+请求返回值：
+{
+    "code": "400343",
+    "info": null,
+    "msg": "Address1 is numeric"
+}
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr class='passClass '>
+    <td>paramunittest.EditOrderAddress_86</td>
+    <td>加拿大地址2为纯数字</td>
+    <td>1</td>
+    <td>1</td>
+    <td>0</td>
+    <td>0</td>
+    <td><a href="javascript:showClassDetail('c99',1)">查看详细</a></td>
+</tr>
+
+<tr id='pt99.1' class='hiddenRow'>
+    <td colspan='2' class='none'><div class='testcase'>testAddAddress</div></td>
+    <td colspan='7' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt99.1')" >
+        pass</a>
+
+    <div id='div_pt99.1' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt99.1').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt99.1: 
+请求地址：http://api.shein.com/v2/order/order/editOrderAddress
+
+请求返回值：
+{
+    "code": "400347",
+    "info": null,
+    "msg": "Address2 is numeric"
+}
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr class='passClass '>
+    <td>paramunittest.EditOrderAddress_87</td>
+    <td>加拿大地址2大于35字符</td>
+    <td>1</td>
+    <td>1</td>
+    <td>0</td>
+    <td>0</td>
+    <td><a href="javascript:showClassDetail('c100',1)">查看详细</a></td>
+</tr>
+
+<tr id='pt100.1' class='hiddenRow'>
+    <td colspan='2' class='none'><div class='testcase'>testAddAddress</div></td>
+    <td colspan='7' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt100.1')" >
+        pass</a>
+
+    <div id='div_pt100.1' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt100.1').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt100.1: 
+请求地址：http://api.shein.com/v2/order/order/editOrderAddress
+
+请求返回值：
+{
+    "code": "400354",
+    "info": null,
+    "msg": "Address2 over 35"
+}
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr class='passClass '>
+    <td>paramunittest.EditOrderAddress_88</td>
+    <td>加拿大tel小于5位数字</td>
+    <td>1</td>
+    <td>1</td>
+    <td>0</td>
+    <td>0</td>
+    <td><a href="javascript:showClassDetail('c101',1)">查看详细</a></td>
+</tr>
+
+<tr id='pt101.1' class='hiddenRow'>
+    <td colspan='2' class='none'><div class='testcase'>testAddAddress</div></td>
+    <td colspan='7' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt101.1')" >
+        pass</a>
+
+    <div id='div_pt101.1' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt101.1').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt101.1: 
+请求地址：http://api.shein.com/v2/order/order/editOrderAddress
+
+请求返回值：
+{
+    "code": "400311",
+    "info": null,
+    "msg": "tel number error."
+}
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr class='passClass '>
+    <td>paramunittest.EditOrderAddress_89</td>
+    <td>加拿大tel为非数字字符</td>
+    <td>1</td>
+    <td>1</td>
+    <td>0</td>
+    <td>0</td>
+    <td><a href="javascript:showClassDetail('c102',1)">查看详细</a></td>
+</tr>
+
+<tr id='pt102.1' class='hiddenRow'>
+    <td colspan='2' class='none'><div class='testcase'>testAddAddress</div></td>
+    <td colspan='7' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt102.1')" >
+        pass</a>
+
+    <div id='div_pt102.1' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt102.1').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt102.1: 
+请求地址：http://api.shein.com/v2/order/order/editOrderAddress
+
+请求返回值：
+{
+    "code": "400311",
+    "info": null,
+    "msg": "tel number error."
+}
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr class='passClass '>
+    <td>paramunittest.EditOrderAddress_9</td>
+    <td>法国地址1含有@符号</td>
+    <td>1</td>
+    <td>1</td>
+    <td>0</td>
+    <td>0</td>
+    <td><a href="javascript:showClassDetail('c103',1)">查看详细</a></td>
+</tr>
+
+<tr id='pt103.1' class='hiddenRow'>
+    <td colspan='2' class='none'><div class='testcase'>testAddAddress</div></td>
+    <td colspan='7' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt103.1')" >
+        pass</a>
+
+    <div id='div_pt103.1' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt103.1').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt103.1: 
+请求地址：http://api.shein.com/v2/order/order/editOrderAddress
+
+请求返回值：
+{
+    "code": "400344",
+    "info": null,
+    "msg": "Address1 contain @"
+}
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr class='passClass '>
+    <td>paramunittest.EditOrderAddress_90</td>
+    <td>加拿大tel大于25位数字</td>
+    <td>1</td>
+    <td>1</td>
+    <td>0</td>
+    <td>0</td>
+    <td><a href="javascript:showClassDetail('c104',1)">查看详细</a></td>
+</tr>
+
+<tr id='pt104.1' class='hiddenRow'>
+    <td colspan='2' class='none'><div class='testcase'>testAddAddress</div></td>
+    <td colspan='7' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt104.1')" >
+        pass</a>
+
+    <div id='div_pt104.1' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt104.1').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt104.1: 
+请求地址：http://api.shein.com/v2/order/order/editOrderAddress
+
+请求返回值：
+{
+    "code": "400311",
+    "info": null,
+    "msg": "tel number error."
+}
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr class='passClass '>
+    <td>paramunittest.EditOrderAddress_91</td>
+    <td>加拿大postcode非正确格式</td>
+    <td>1</td>
+    <td>1</td>
+    <td>0</td>
+    <td>0</td>
+    <td><a href="javascript:showClassDetail('c105',1)">查看详细</a></td>
+</tr>
+
+<tr id='pt105.1' class='hiddenRow'>
+    <td colspan='2' class='none'><div class='testcase'>testAddAddress</div></td>
+    <td colspan='7' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt105.1')" >
+        pass</a>
+
+    <div id='div_pt105.1' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt105.1').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt105.1: 
+请求地址：http://api.shein.com/v2/order/order/editOrderAddress
+
+请求返回值：
+{
+    "code": "400323",
+    "info": null,
+    "msg": "Postcode is invalid"
+}
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr class='passClass '>
+    <td>paramunittest.EditOrderAddress_92</td>
+    <td>加拿大正常编辑地址</td>
+    <td>1</td>
+    <td>1</td>
+    <td>0</td>
+    <td>0</td>
+    <td><a href="javascript:showClassDetail('c106',1)">查看详细</a></td>
+</tr>
+
+<tr id='pt106.1' class='hiddenRow'>
+    <td colspan='2' class='none'><div class='testcase'>testAddAddress</div></td>
+    <td colspan='7' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt106.1')" >
+        pass</a>
+
+    <div id='div_pt106.1' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt106.1').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt106.1: 
+请求地址：http://api.shein.com/v2/order/order/editOrderAddress
+
+请求返回值：
+{
+    "code": "0",
+    "info": {
+        "code": 1,
+        "description": "",
+        "enabled": 0,
+        "exceptionKey": "SelectedCountryNotSupportCODPaymentMethod",
+        "is_display": 1,
+        "useCod": 1
+    },
+    "msg": "ok"
+}
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr class='passClass '>
+    <td>paramunittest.EditOrderAddress_93</td>
+    <td>墨西哥fname小于4字符</td>
+    <td>1</td>
+    <td>1</td>
+    <td>0</td>
+    <td>0</td>
+    <td><a href="javascript:showClassDetail('c107',1)">查看详细</a></td>
+</tr>
+
+<tr id='pt107.1' class='hiddenRow'>
+    <td colspan='2' class='none'><div class='testcase'>testAddAddress</div></td>
+    <td colspan='7' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt107.1')" >
+        pass</a>
+
+    <div id='div_pt107.1' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt107.1').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt107.1: 
+请求地址：http://api.shein.com/v2/order/order/editOrderAddress
+
+请求返回值：
+{
+    "code": "400305",
+    "info": null,
+    "msg": "fname not less than 2."
+}
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr class='passClass '>
+    <td>paramunittest.EditOrderAddress_94</td>
+    <td>墨西哥fname大于34字符</td>
+    <td>1</td>
+    <td>1</td>
+    <td>0</td>
+    <td>0</td>
+    <td><a href="javascript:showClassDetail('c108',1)">查看详细</a></td>
+</tr>
+
+<tr id='pt108.1' class='hiddenRow'>
+    <td colspan='2' class='none'><div class='testcase'>testAddAddress</div></td>
+    <td colspan='7' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt108.1')" >
+        pass</a>
+
+    <div id='div_pt108.1' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt108.1').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt108.1: 
+请求地址：http://api.shein.com/v2/order/order/editOrderAddress
+
+请求返回值：
+{
+    "code": "400305",
+    "info": null,
+    "msg": "fname not less than 2."
+}
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr class='passClass '>
+    <td>paramunittest.EditOrderAddress_95</td>
+    <td>墨西哥city小于2字符</td>
+    <td>1</td>
+    <td>1</td>
+    <td>0</td>
+    <td>0</td>
+    <td><a href="javascript:showClassDetail('c109',1)">查看详细</a></td>
+</tr>
+
+<tr id='pt109.1' class='hiddenRow'>
+    <td colspan='2' class='none'><div class='testcase'>testAddAddress</div></td>
+    <td colspan='7' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt109.1')" >
+        pass</a>
+
+    <div id='div_pt109.1' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt109.1').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt109.1: 
+请求地址：http://api.shein.com/v2/order/order/editOrderAddress
+
+请求返回值：
+{
+    "code": "400309",
+    "info": null,
+    "msg": "city not less than 2."
+}
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr class='passClass '>
+    <td>paramunittest.EditOrderAddress_96</td>
+    <td>墨西哥city大于35字符</td>
+    <td>1</td>
+    <td>1</td>
+    <td>0</td>
+    <td>0</td>
+    <td><a href="javascript:showClassDetail('c110',1)">查看详细</a></td>
+</tr>
+
+<tr id='pt110.1' class='hiddenRow'>
+    <td colspan='2' class='none'><div class='testcase'>testAddAddress</div></td>
+    <td colspan='7' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt110.1')" >
+        pass</a>
+
+    <div id='div_pt110.1' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt110.1').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt110.1: 
+请求地址：http://api.shein.com/v2/order/order/editOrderAddress
+
+请求返回值：
+{
+    "code": "400309",
+    "info": null,
+    "msg": "city not less than 2."
+}
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr class='passClass '>
+    <td>paramunittest.EditOrderAddress_97</td>
+    <td>墨西哥city为纯数字</td>
+    <td>1</td>
+    <td>1</td>
+    <td>0</td>
+    <td>0</td>
+    <td><a href="javascript:showClassDetail('c111',1)">查看详细</a></td>
+</tr>
+
+<tr id='pt111.1' class='hiddenRow'>
+    <td colspan='2' class='none'><div class='testcase'>testAddAddress</div></td>
+    <td colspan='7' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt111.1')" >
+        pass</a>
+
+    <div id='div_pt111.1' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt111.1').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt111.1: 
+请求地址：http://api.shein.com/v2/order/order/editOrderAddress
+
+请求返回值：
+{
+    "code": "400350",
+    "info": null,
+    "msg": "City is numeric"
+}
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr class='passClass '>
+    <td>paramunittest.EditOrderAddress_98</td>
+    <td>墨西哥地址1小于5字符</td>
+    <td>1</td>
+    <td>1</td>
+    <td>0</td>
+    <td>0</td>
+    <td><a href="javascript:showClassDetail('c112',1)">查看详细</a></td>
+</tr>
+
+<tr id='pt112.1' class='hiddenRow'>
+    <td colspan='2' class='none'><div class='testcase'>testAddAddress</div></td>
+    <td colspan='7' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt112.1')" >
+        pass</a>
+
+    <div id='div_pt112.1' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt112.1').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt112.1: 
+请求地址：http://api.shein.com/v2/order/order/editOrderAddress
+
+请求返回值：
+{
+    "code": "400307",
+    "info": null,
+    "msg": "address error."
+}
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr class='passClass '>
+    <td>paramunittest.EditOrderAddress_99</td>
+    <td>墨西哥地址1大于35字符</td>
+    <td>1</td>
+    <td>1</td>
+    <td>0</td>
+    <td>0</td>
+    <td><a href="javascript:showClassDetail('c113',1)">查看详细</a></td>
+</tr>
+
+<tr id='pt113.1' class='hiddenRow'>
+    <td colspan='2' class='none'><div class='testcase'>testAddAddress</div></td>
+    <td colspan='7' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt113.1')" >
+        pass</a>
+
+    <div id='div_pt113.1' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt113.1').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt113.1: 
+请求地址：http://api.shein.com/v2/order/order/editOrderAddress
+
+请求返回值：
+{
+    "code": "400307",
+    "info": null,
+    "msg": "address error."
+}
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='total_row'>
+    <td colspan='2'>Total</td>
+    <td>113</td>
+    <td>113</td>
+    <td>0</td>
+    <td>0</td>
+    <td>&nbsp;</td>
+</tr>
+</table>
+
+<div id='ending'>&nbsp;</div>
+
+</body>
+</html>
