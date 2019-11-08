@@ -38,8 +38,8 @@ class TestDB(unittest.TestCase):
             print("Connect DB successfully!")
 
     def testDB(self):
-        # mysql1 = """SELECT activity_type, COUNT(activity_type), is_show FROM `rs_member_winner` WHERE email='lala@lala.cn' AND is_show=0 GROUP BY activity_type"""
-        mysql2 = """SELECT activity_type, COUNT(activity_type), is_show FROM `rs_member_winner` WHERE email='chennan@shein.com' AND is_show=0 GROUP BY activity_type"""
+        # mysql1 = """SELECT activity_type, COUNT(activity_type), is_show FROM `tablename` WHERE email='xxxxxxx' AND is_show=0 GROUP BY activity_type"""
+        mysql2 = """SELECT activity_type, COUNT(activity_type), is_show FROM `tablename` WHERE email='xxxxxxx' AND is_show=0 GROUP BY activity_type"""
         file = "F:/result.txt"
 
         # self.cursor.execute(mysql1)
@@ -61,22 +61,22 @@ class TestDB(unittest.TestCase):
         with open(file, "a") as f:
             f.write("中奖次数：%d \n ********************************\n" % self.num)
 
-        # sumget = """SELECT COUNT(*) FROM rs_member_point_record WHERE member_id IN (SELECT member_id FROM rs_member WHERE email='wangke@dotfashion.cn')"""
+        # sumget = """SELECT COUNT(*) FROM tablename WHERE member_id IN (SELECT member_id FROM rs_member WHERE email='xxxxxxx')"""
         # self.cursor.execute(sumget)
         # a = self.cursor.fetchall()
         # for i in a:
         #     print("查询到%d条积分中奖记录。" % i[0])
         #     print("计算到%d条积分中奖记录。" % self.num)
-        # coupon_num = """SELECT COUNT(*) FROM rs_coupon_email WHERE email = 'wangke@dotfashion.cn'"""
+        # coupon_num = """SELECT COUNT(*) FROM tablename WHERE email = 'xxxxxxxx'"""
         # self.cursor.execute(coupon_num)
         # b = self.cursor.fetchall()
         # for n in b:
         #     print("优惠券绑定记录%d条" % n[0])
 
     def tearDown(self):
-        # delsql = """DELETE FROM rs_member_winner WHERE email='wangke@dotfashion.cn'"""
-        # delsql2 = """DELETE FROM rs_member_point_record WHERE member_id IN (SELECT member_id FROM rs_member WHERE email='wangke@dotfashion.cn') AND last_update_time > '2017-11-07 00:00:00'"""
-        # delsql3 = """DELETE FROM rs_coupon_email WHERE email = 'wangke@dotfashion.cn'"""
+        # delsql = """DELETE FROM tablename WHERE email='xxxxxx'"""
+        # delsql2 = """DELETE FROM tablename WHERE member_id IN (SELECT member_id FROM tablename WHERE email='xxxxxx') AND last_update_time > '2017-11-07 00:00:00'"""
+        # delsql3 = """DELETE FROM tablename WHERE email = 'xxxxxx'"""
         # self.cursor.execute(delsql)
         # self.db.commit()
         # self.cursor.execute(delsql2)
